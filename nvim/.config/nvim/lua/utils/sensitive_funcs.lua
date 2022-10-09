@@ -57,6 +57,12 @@ function M.close_dbg_value()
 	end
 end
 
+function M.build()
+	if (lang_sel.is_c()) then
+		vim.cmd('CMake build')
+	end
+end
+
 function M.build_all()
 	if (lang_sel.is_c()) then
 		vim.cmd('CMake build_all')
@@ -92,6 +98,12 @@ function M.goto_definition()
 		vim.cmd('YcmCompleter GoTo')
 	elseif (lang_sel.is_rust()) then
 		--vim.cmd('ALEGoToDefinition')
+	end
+end
+
+function M.set_run_args()
+	if (lang_sel.is_c()) then
+		vim.cmd('CMake set_target_args')
 	end
 end
 

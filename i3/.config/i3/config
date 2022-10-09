@@ -113,7 +113,7 @@ for_window [class="Skype"]                      move to workspace $ws5
 for_window [class="Telegram"]                   move to workspace $ws5
 for_window [class="Steam"]                      move to workspace $ws6
 for_window [class="Lutris"]                     move to workspace $ws6
-for_window [class="Thunderbird"]                move to workspace $ws7
+for_window [class="thunderbird"]                move to workspace $ws7
 for_window [class="../projects/wavelet_video_compression/wavelet_video_compression.prj"]                move to workspace $ws2
 for_window [class="../projects/utils/image_compare/image_compare_test.prj"]                move to workspace $ws2
 

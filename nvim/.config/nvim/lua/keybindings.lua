@@ -91,7 +91,9 @@ local setup = function()
   nmap('<C-d>', ':CMake select_build_type<CR>')
   nmap('<C-c>', ':CMake configure<CR>')
   nmap('<C-b>', ':lua require \'utils.sensitive_funcs\'.build_all()<CR>')
-  nmap('<leader><F5>', ':lua require\'utils.sensitive_funcs\'.run_debug()<CR>')
+  nmap('<C-Shift-b>', ':lua require \'utils.sensitive_funcs\'.build()<CR>')
+  nmap('<C-a>', ':lua require \'utils.sensitive_funcs\'.set_run_args()<CR>')
+  nmap('<leader><F5>', ':lua require\'utils.sensitive_funcs\'.run_debug()<CR>', {silent=false})
   nmap('<F5>', ':lua require\'utils.sensitive_funcs\'.run()<CR>')
 
   -- debugging

@@ -32,13 +32,15 @@ function M.view()
 	  '-e', '.rs',
 	  '-e', '.toml',
 	  '-e', 'lib/vkrenderer',
-      '--exclude', 'lib',
+      '--exclude', 'lib/imgui',
+      '--exclude', 'lib/ImGuizmo',
 	  '--exclude', 'lib/vkrenderer/libs',
       '--exclude', 'build-debug',
       '--exclude', 'build-release',
       '--exclude', 'cmake-build-debug',
       '--exclude', 'cmake-build-release',
       '--exclude', 'build',
+      '--exclude', 'resources',
     },
 
     attach_mappings = function(_, map)

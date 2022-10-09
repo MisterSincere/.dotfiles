@@ -90,6 +90,7 @@ vim.g.cmake_build_dir = 'build'
 local cmake = require('cmake')
 cmake.setup({
   cmake_executable = 'cmake',
+  save_before_build = true,
   parameters_file = 'neovim.json',
   build_dir = tostring(Path:new('{cwd}', 'build-{build_type}/')),
   default_projects_path = tostring(Path:new(vim.loop.os_homedir(), 'programming')),

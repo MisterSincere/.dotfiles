@@ -9,6 +9,7 @@ function M.is_c()
 		or ft == "mtrg"
 		or ft == "mtprj"
 		or ft == "cmake"
+		or ft == "glsl"
 end
 
 function M.is_rust()
