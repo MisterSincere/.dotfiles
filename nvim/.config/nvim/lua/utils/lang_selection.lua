@@ -9,13 +9,17 @@ function M.is_c()
 		or ft == "mtrg"
 		or ft == "mtprj"
 		or ft == "cmake"
-		or ft == "glsl"
 end
 
 function M.is_rust()
 	ft = vim.bo.filetype
 	return ft == "rust"
 		or ft == "toml"
+end
+
+function M.is_python()
+	ft = vim.bo.filetype
+	return ft == "python"
 end
 
 
