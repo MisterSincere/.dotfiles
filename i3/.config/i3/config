@@ -197,7 +197,7 @@ bindsym $mod+r mode "resize"
 mode "launch" {
   bindsym f exec firefox, mode "default"
   bindsym t exec thunderbird, mode "default"
-  bindsym s exec spotify, mode "default"
+  bindsym s exec spotify-launcher, mode "default"
   bindsym Shift+s exec steam, mode "default"
   bindsym Ctrl+s exec slack, mode "default"
   bindsym d exec discord, mode "default"
@@ -268,4 +268,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # dunst
 exec_always --no-startup-id /usr/bin/dunst
 
-exec_always --no-startup-id $HOME/.config/polybar/scripts/checkupdates.sh
+#exec_always --no-startup-id $HOME/.config/polybar/scripts/checkupdates.sh
