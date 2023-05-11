@@ -2,6 +2,8 @@
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
+Plug 'github/copilot.vim'
+
 -- theming
 Plug('khaveesh/vim-fish-syntax')
 Plug('tikhomirov/vim-glsl')

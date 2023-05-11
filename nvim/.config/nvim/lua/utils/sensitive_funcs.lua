@@ -99,4 +99,10 @@ function M.goto_definition()
 	end
 end
 
+function M.set_run_args()
+	if (lang_sel.is_c()) then
+		vim.cmd('CMake set_target_args')
+	end
+end
+
 return M

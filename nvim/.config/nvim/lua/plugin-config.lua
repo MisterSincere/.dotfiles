@@ -4,6 +4,10 @@ if executable('rg') then
   vim.g.rg_derive_root = 'true'
 end
 
+-- copilot
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
 -- thing to ignore in search
 vim.g.ctrlp_user_command = {'.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'}
 vim.g.ctrlp_use_caching = 0
@@ -32,7 +36,7 @@ telescope.load_extension('ui-select')
 -- treesitter
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
-	ensure_installed = { "help", "c", "cpp", "lua", "rust" },
+	ensure_installed = { "c", "cpp", "lua", "rust" },
 	auto_install = true,
 	highlight = {
 		enable = true,
