@@ -29,6 +29,9 @@ local setup  = function()
 	-- other
   	Plug 'Yohannfra/Vim-Goto-Header'
 
+	-- python autopep8
+	Plug 'tell-k/vim-autopep8'
+
 	-- used in status line to display git status
   	Plug 'tpope/vim-fugitive'
 	
