@@ -17,5 +17,10 @@ function M.is_rust()
 		or ft == "toml"
 end
 
+function M.is_python()
+	ft = vim.bo.filetype
+	return ft == "python"
+end
+
 
 return M

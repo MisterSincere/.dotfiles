@@ -103,17 +103,19 @@ for_window [class="Seer"]			            move to workspace $ws2
 for_window [class="qrenderdoc"]		            move to workspace $ws2
 for_window [class="NVIDIA Nsight Graphics"]     move to workspace $ws2
 for_window [class="Raft"]                       move to workspace $ws2
+for_window [class="vkconfig"]                   move to workspace $ws2
 for_window [class="VirtualBox Manager"]         move to workspace $ws2
 for_window [class="Spotify"]                    move to workspace $ws4
 for_window [class="discord"]                    move to workspace $ws5
 for_window [class="Slack"]                      move to workspace $ws5
 for_window [class="Signal"]                     move to workspace $ws5
 for_window [class="whatsapp-nativefier-d40211"] move to workspace $ws5
+for_window [class="Whatsapp-for-linux"] move to workspace $ws5
 for_window [class="Skype"]                      move to workspace $ws5
 for_window [class="Telegram"]                   move to workspace $ws5
 for_window [class="Steam"]                      move to workspace $ws6
 for_window [class="Lutris"]                     move to workspace $ws6
-for_window [class="Thunderbird"]                move to workspace $ws7
+for_window [class="thunderbird"]                move to workspace $ws7
 for_window [class="../projects/wavelet_video_compression/wavelet_video_compression.prj"]                move to workspace $ws2
 for_window [class="../projects/utils/image_compare/image_compare_test.prj"]                move to workspace $ws2
 
@@ -197,7 +199,7 @@ bindsym $mod+r mode "resize"
 mode "launch" {
   bindsym f exec firefox, mode "default"
   bindsym t exec thunderbird, mode "default"
-  bindsym s exec spotify, mode "default"
+  bindsym s exec spotify-launcher, mode "default"
   bindsym Shift+s exec steam, mode "default"
   bindsym Ctrl+s exec slack, mode "default"
   bindsym d exec discord, mode "default"
@@ -268,4 +270,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # dunst
 exec_always --no-startup-id /usr/bin/dunst
 
-exec_always --no-startup-id $HOME/.config/polybar/scripts/checkupdates.sh
+#exec_always --no-startup-id $HOME/.config/polybar/scripts/checkupdates.sh

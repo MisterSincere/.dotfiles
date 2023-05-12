@@ -1,13 +1,8 @@
 -- coloring.lua
 
-local setup = function()
-  vim.opt.background = 'dark'
-  vim.cmd('colorscheme dark_plus')
-  vim.cmd('syntax on')
-  --vim.cmd('hi! Normal guibg=NONE gui=NONE ctermbg=NONE cterm=NONE')
-  --vim.cmd('hi! SignColumn guibg=NONE gui=NONE ctermbg=NONE cterm=NONE')
-end
+vim.opt.background = 'dark'
+vim.cmd.colorscheme("dark_plus")
+vim.cmd('syntax on')
 
-return {
-  setup = setup
-}
+--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
