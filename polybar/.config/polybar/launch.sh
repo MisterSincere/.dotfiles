@@ -5,7 +5,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch Polybar
-echo "---" | tee -a /tmp/polybar_hdmi0_top.log /tmp/polybar_perf_bar.log /tmp/polybar_dp2_top.log
-polybar -c ~/.config/polybar/config.ini hdmi0_top >> /tmp/polybar_hdmi0_top.log 2>&1 & disown
-polybar -c ~/.config/polybar/config.ini perf_bar >> /tmp/polybar_perf_bar.log 2>&1 & disown
-polybar -c ~/.config/polybar/config.ini dp2_top >> /tmp/polybar_dp2_top.log 2>&1 & disown 
+echo "---" | tee -a /tmp/polybar_primary_top.log /tmp/polybar_perf_bar.log /tmp/polybar_secondary_top.log
+polybar -c ~/.config/polybar/config.ini primary_top >> /tmp/polybar_primary_top.log 2>&1 & disown
+polybar -c ~/.config/polybar/config.ini secondary_top >> /tmp/polybar_secondary_top.log 2>&1 & disown
+polybar -c ~/.config/polybar/config.ini perf_bar >> /tmp/polybar_perf_bar.log 2>&1 & disown 
