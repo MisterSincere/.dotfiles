@@ -14,6 +14,7 @@ vim.g.ctrlp_use_caching = 0
 
 -- gutentags
 vim.g.gutentags_exclude_project_root = {'home/kaffeekind/programming/mtstudio/projects/*'}
+vim.g.gutentags_cache_dir = os.getenv('HOME') .. '/.cache/gutentags/'
 
 -- gotoheader
 vim.g.goto_header_associate_cpp_h = 1
