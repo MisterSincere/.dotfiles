@@ -37,7 +37,7 @@ telescope.load_extension('ui-select')
 -- treesitter
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
-	ensure_installed = { "c", "cpp", "lua", "rust", "python" },
+	ensure_installed = { "lua" },
 	auto_install = true,
 	highlight = {
 		enable = true,
