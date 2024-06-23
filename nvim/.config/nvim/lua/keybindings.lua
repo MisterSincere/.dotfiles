@@ -28,7 +28,7 @@ local lang_sel = require('utils.lang_selection')
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-imap('jj', '<ESC>')
+imap('jk', '<ESC>')
 
 nmap('<leader>gh', ':diffget //3<CR>')
 nmap('<leader>gu', ':diffget //2<CR>')
@@ -61,12 +61,10 @@ nmap('<leader>gs', vim.cmd.Git)
 -- show nvim configs / reload configs
 nmap('<F1>', '<cmd>:lua require("utils.reload").reload()<CR>', {silent=true,noremap=false})
 
--- telescope
+-- file browsing (telescope)
 local telescope_builtin = require('telescope.builtin')
-nmap('<leader>pv', '<cmd>:lua require("utils.project_view").view()<CR>', {silent=true})
-nmap('<leader>ps', function()
-	telescope_builtin.grep_string({ search = vim.fn.input("Grep > ") });
-end)
+nmap('<leader>pv', '<cmd>:lua require("utils.file_browsing").project_view()<CR>', {silent=true})
+nmap('<leader>ps', '<cmd>:lua require("utils.file_browsing").project_search()<CR>', {silent=true})
 nmap('<leader><leader>', telescope_builtin.tags, {silent=true})
 
 -- harpoon
@@ -101,6 +99,12 @@ nmap('<F7>', ':lua require\'utils.sensitive_funcs\'.step_over()<CR>')
 nmap('<F8>', ':lua require\'utils.sensitive_funcs\'.continue()<CR>')
 nmap('<F10>', ':lua require\'utils.sensitive_funcs\'.show_dbg_value()<CR>', {silent=false})
 nmap('<F11>', ':lua require\'utils.sensitive_funcs\'.close_dbg_value()<CR>', {silent=false})
+
+-- remote sshfs
+local rsshfs = require('remote-sshfs.api')
+nmap('<leader>rc', rsshfs.connect)
+nmap('<leader>rd', rsshfs.disconnect)
+nmap('<leader>re', rsshfs.edit)
 
 -- formatting shortcut
 vmap('<leader>f',

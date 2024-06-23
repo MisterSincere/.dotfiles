@@ -1,6 +1,6 @@
 -- init.lua
 require('plugins')
-require('plugin-config')
+require('pconfigs')
 require('coloring')
 require('options')
 require('keybindings')
