@@ -14,6 +14,7 @@ vim.g.ctrlp_use_caching = 0
 
 -- gutentags
 vim.g.gutentags_exclude_project_root = {'home/kaffeekind/programming/mtstudio/projects/*'}
+vim.g.gutentags_cache_dir = os.getenv('HOME') .. '/.cache/gutentags/'
 
 -- gotoheader
 vim.g.goto_header_associate_cpp_h = 1
@@ -36,7 +37,7 @@ telescope.load_extension('ui-select')
 -- treesitter
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
-	ensure_installed = { "c", "cpp", "lua", "rust" },
+	ensure_installed = { "lua" },
 	auto_install = true,
 	highlight = {
 		enable = true,
@@ -44,31 +45,7 @@ treesitter.setup({
 })
 
 -- lsp
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
-local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<C-y>'] = cmp.mapping.confirm({select = true}),
-	['<C-Space>'] = cmp.mapping.complete(),
-})
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
-})
-lsp.on_attach(function(client, bufnr)
-	local opts = {buffer = bufnr, remap = false}
-
-	vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-	vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-	vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-	vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
-	vim.keymap.set('n', '<leader>vr', function() vim.lsp.buf.references() end, opts)
-	vim.keymap.set('n', '<leader>vn', function() vim.lsp.buf.rename() end, opts)
-	vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-end)
-lsp.setup()
+require('lsp-config')
 
 -- dap debugger
 local dap = require('dap')
@@ -132,3 +109,52 @@ cmake.setup({
   dap_configuration = {type = 'lldb', request = 'launch'},
   dap_open_command = dap.repl.open,
 })
+
+-- remote sshfs
+local remote_sshfs = require('remote-sshfs')
+remote_sshfs.setup{
+  connections = {
+    ssh_configs = { -- which ssh configs to parse for hosts list
+      vim.fn.expand "$HOME" .. "/.ssh/config",
+      "/etc/ssh/ssh_config",
+      -- "/path/to/custom/ssh_config"
+    },
+    sshfs_args = { -- arguments to pass to the sshfs command
+      "-o reconnect",
+      "-o ConnectTimeout=5",
+    },
+  },
+  mounts = {
+    base_dir = vim.fn.expand "$HOME" .. "/.sshfs/", -- base directory for mount points
+    unmount_on_exit = true, -- run sshfs as foreground, will unmount on vim exit
+  },
+  handlers = {
+    on_connect = {
+      change_dir = true, -- when connected change vim working directory to mount point
+    },
+    on_disconnect = {
+      clean_mount_folders = false, -- remove mount point folder on disconnect/unmount
+    },
+    on_edit = {}, -- not yet implemented
+  },
+  ui = {
+    select_prompts = false, -- not yet implemented
+    confirm = {
+      connect = false, -- prompt y/n when host is selected to connect to
+      change_dir = false, -- prompt y/n to change working directory on connection (only applicable if handlers.on_connect.change_dir is enabled)
+    },
+  },
+  log = {
+    enable = false, -- enable logging
+    truncate = false, -- truncate logs
+    types = { -- enabled log types
+      all = false,
+      util = false,
+      handler = false,
+      sshfs = false,
+    },
+  },
+}
+local remote_sshfs_connections = require('remote-sshfs.connections')
+remote_sshfs_connections.list_hosts()["ICG"]["Path"] = "/afs/cg.cs.tu-bs.de/home/heesen/"
+require('telescope').load_extension('remote-sshfs')

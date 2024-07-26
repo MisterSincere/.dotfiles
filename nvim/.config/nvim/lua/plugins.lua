@@ -2,8 +2,6 @@
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug 'github/copilot.vim'
-
 -- theming
 Plug('khaveesh/vim-fish-syntax')
 Plug('tikhomirov/vim-glsl')
@@ -50,12 +48,14 @@ Plug('mbbill/undotree')
 Plug('neovim/nvim-lspconfig')
 Plug('williamboman/mason.nvim', {['do'] = ':MasonUpdate'})
 Plug('williamboman/mason-lspconfig.nvim')
-
--- Autocompletion
+	-- Autocompletion
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp')
 Plug('L3MON4D3/LuaSnip')
 
-Plug('VonHeikemen/lsp-zero.nvim', {branch = 'v2.x'})
+-- remote working
+Plug('nosduco/remote-sshfs.nvim')
+
+Plug('aurum77/live-server.nvim')
 
 vim.call('plug#end')
