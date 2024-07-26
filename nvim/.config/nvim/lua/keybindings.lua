@@ -28,7 +28,7 @@ local lang_sel = require('utils.lang_selection')
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-imap('jj', '<ESC>')
+imap('jk', '<ESC>')
 
 nmap('<leader>gh', ':diffget //3<CR>')
 nmap('<leader>gu', ':diffget //2<CR>')
