@@ -155,6 +155,6 @@ remote_sshfs.setup{
     },
   },
 }
-local remote_sshfs_connections = require('remote-sshfs.connections')
-remote_sshfs_connections.list_hosts()["ICG"]["Path"] = "/afs/cg.cs.tu-bs.de/home/heesen/"
-require('telescope').load_extension('remote-sshfs')
+--local remote_sshfs_connections = require('remote-sshfs.connections')
+--remote_sshfs_connections.list_hosts()["ICG"]["Path"] = "/afs/cg.cs.tu-bs.de/home/heesen/"
+--require('telescope').load_extension('remote-sshfs')

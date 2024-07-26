@@ -27,7 +27,7 @@ Plug('Shatur/neovim-cmake')
 -- formatting
 Plug('rhysd/vim-clang-format')
 -- other
-Plug('Yohannfra/Vim-Goto-Header')
+--Plug('Yohannfra/Vim-Goto-Header')
 
 -- python autopep8
 Plug 'tell-k/vim-autopep8'
