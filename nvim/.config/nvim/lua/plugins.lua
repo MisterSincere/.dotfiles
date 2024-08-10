@@ -18,7 +18,7 @@ Plug('rust-lang/rust.vim')
 
 ---- CPP ----
 -- automatic tag generation
-Plug('ludovicchabant/vim-gutentags')
+--Plug('ludovicchabant/vim-gutentags')
 -- debugging
 Plug('mfussenegger/nvim-dap')
 Plug('theHamsta/nvim-dap-virtual-text')

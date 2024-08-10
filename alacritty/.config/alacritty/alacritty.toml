@@ -7,10 +7,10 @@ style = "Bold"
 
 [font.bold_italic]
 family = "monospace"
-style = "Bold Italic"
+style = "Bold"
 
 [font.italic]
-family = "Ubunto Mono"
+family = "Ubuntu Mono"
 style = "Italic"
 
 [font.normal]
