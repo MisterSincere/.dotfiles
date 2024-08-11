@@ -22,7 +22,6 @@
         "cpu",
         "memory",
         "temperature",
-        "hyprland/language",
         "power-profiles-daemon",
         "battery",
         "clock",
