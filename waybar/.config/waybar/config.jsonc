@@ -18,7 +18,6 @@
     "modules-right": [
         "mpd",
         "pulseaudio",
-        "network",
         "cpu",
         "memory",
         "temperature",
@@ -44,6 +43,10 @@
             "default": ""
         }
     },
+		"hyprland/window": {
+				"max-length": 86,
+				"icon": false
+		},
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
