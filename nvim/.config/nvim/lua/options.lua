@@ -46,7 +46,7 @@ vim.opt.undodir = '/tmp/nvim/undodir'
 vim.opt.termguicolors = true
 
 -- number of spaces tab expands to if expandtab is true
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
 
 -- don't show evil swapfiles
 vim.opt.swapfile = false
