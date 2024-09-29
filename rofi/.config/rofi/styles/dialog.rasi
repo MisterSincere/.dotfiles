@@ -85,7 +85,6 @@ element-text, element-icon {
 
 element {
     border: 						0px;
-    border-radius: 			0px;
     padding: 						5px;
 }
 element normal.normal {
@@ -100,6 +99,7 @@ element normal.active {
     background-color: 				@green;
     text-color:       				@bg;
 }
+
 element selected {
   background-color: @ac;
   text-color:       @bg;
@@ -107,6 +107,11 @@ element selected {
   border-radius:    0px;
   border-color:     @bg;
 }
+
+element selected.urgent {
+		text-color: @red;
+}
+
 element alternate.normal {
     background-color: 				@bg;
     text-color:       				@fg;

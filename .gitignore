@@ -8,4 +8,6 @@ vim/.vim/.VimballRecord
 
 nvim/.config/nvim/plugged/
 
+tmux/.config/tmux/plugins/
+
 tags
