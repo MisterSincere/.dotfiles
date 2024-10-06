@@ -26,6 +26,7 @@ function M.project_view()
 			'-e', '.cmake',
 			'-e', '.py',
 			'-e', '.comp',
+			'-e', '.conf',
 			'-e', '.glsl',
 			'-e', '.vert',
 			'-e', '.frag',
