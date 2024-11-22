@@ -12,6 +12,8 @@ Plug('nvim-treesitter/nvim-treesitter')
 -- let's try harpoon
 Plug('theprimeagen/harpoon')
 
+--Plug('nelsyeung/twig.vim')
+
 ---- RUST ----
 -- formatting
 Plug('rust-lang/rust.vim')
@@ -42,7 +44,7 @@ Plug('nvim-telescope/telescope-ui-select.nvim')
 Plug('nvim-lua/plenary.nvim')
 
 -- keybinding <leader>u
-Plug('mbbill/undotree')
+--Plug('mbbill/undotree')
 
 -- LSP Support
 Plug('neovim/nvim-lspconfig')

@@ -45,7 +45,8 @@ treesitter.setup({
 })
 
 -- lsp
-require('lsp-config')
+local lspconfig = require('lsp-config')
+
 
 -- dap debugger
 local dap = require('dap')
