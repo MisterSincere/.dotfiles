@@ -47,7 +47,6 @@ treesitter.setup({
 -- lsp
 local lspconfig = require('lsp-config')
 
-
 -- dap debugger
 local dap = require('dap')
 dap.set_log_level('DEBUG')

@@ -106,6 +106,9 @@ nmap('<leader>rc', rsshfs.connect)
 nmap('<leader>rd', rsshfs.disconnect)
 nmap('<leader>re', rsshfs.edit)
 
+-- diagnostics
+nmap('<leader>d', vim.diagnostic.open_float)
+
 -- formatting shortcut
 vmap('<leader>f',
 function ()

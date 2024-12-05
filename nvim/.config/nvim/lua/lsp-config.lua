@@ -37,7 +37,14 @@ end
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {},
+	ensure_installed = {
+			'html',
+			'ts_ls',
+			'phpactor',
+			'lua_ls',
+			'volar',
+			'twiggy_language_server'
+	},
 	handlers = {
 		default_setup,
 		pylsp = function()
@@ -50,8 +57,11 @@ require('mason-lspconfig').setup({
 	},
 })
 
-local cmp = require('cmp')
+require('lspconfig').html.setup({
+		filetypes = { "twig", "html", "templ" }
+})
 
+local cmp = require('cmp')
 cmp.setup({
 	sources = {
 		{name = 'nvim_lsp'},
@@ -66,3 +76,19 @@ cmp.setup({
 		end,
 	},
 })
+
+vim.diagnostic.config({
+		virtual_text = false,
+		float = {
+				focusable = false,
+				style =  "minimal",
+				border = "rounded",
+				source = "always",
+				header = "",
+				prefix = "",
+		},
+		signs = true,
+		underline = true,
+		update_in_insert = true,
+		severity_sort = false,
+});
