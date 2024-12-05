@@ -7,4 +7,4 @@ set fish_greeting ""
 
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
-zoxide init fish --cmd cd | source
+#zoxide init fish --cmd cd | source
