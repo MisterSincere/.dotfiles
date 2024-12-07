@@ -35,31 +35,44 @@ local default_setup = function(server)
 	})
 end
 
+local mason_registry = require('mason-registry')
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {
-			'html',
-			'ts_ls',
-			'phpactor',
-			'lua_ls',
-			'volar',
-			'twiggy_language_server'
-	},
-	handlers = {
-		default_setup,
-		pylsp = function()
-			require('lspconfig').pylsp.setup({
-				settings = {
-					pylsp = pylsp_config
-				}
-			})
-		end,
-	},
+		ensure_installed = {
+				'html',
+				'phpactor',
+				'ts_ls',
+				'lua_ls',
+				'volar',
+				'twiggy_language_server'
+		},
+		handlers = {
+				default_setup,
+				pylsp = function()
+						lspconfig.pylsp.setup({
+								settings = {
+										pylsp = pylsp_config
+								}
+						})
+				end,
+		},
 })
-
-require('lspconfig').html.setup({
+lspconfig.ts_ls.setup({
+		init_options = {
+				plugins = {
+						{
+								name = '@vue/typescript-plugin',
+								location = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
+								languages = { 'javascript', 'typescript', 'vue' }
+						},
+				},
+		},
+		filetypes = { 'vue' }
+})
+lspconfig.html.setup({
 		filetypes = { "twig", "html", "templ" }
 })
+lspconfig.volar.setup({})
 
 local cmp = require('cmp')
 cmp.setup({
