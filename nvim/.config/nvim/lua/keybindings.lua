@@ -111,14 +111,16 @@ nmap('<leader>d', vim.diagnostic.open_float)
 
 -- formatting shortcut
 vmap('<leader>f',
-function ()
-	if (lang_sel.is_c()) then
-		vim.cmd('ClangFormat')
-	elseif (lang_sel.is_rust()) then
-		vim.cmd('RustFmt')
-	end
-end
-, {silent = true})
+		function ()
+				if (lang_sel.is_c()) then
+						vim.cmd('ClangFormat')
+				elseif (lang_sel.is_rust()) then
+						vim.cmd('RustFmt')
+				end
+		end
+		,
+		{ silent = true }
+)
 
 -- dont overwrite copy register
-xmap('<leader>p', "\"_dP")
+xmap('p', "\"_dP")
