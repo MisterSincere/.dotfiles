@@ -15,6 +15,48 @@ vim.g.ctrlp_use_caching = 0
 -- gutentags
 vim.g.gutentags_exclude_project_root = {'home/kaffeekind/programming/mtstudio/projects/*'}
 vim.g.gutentags_cache_dir = os.getenv('HOME') .. '/.cache/gutentags/'
+vim.g.gutentags_ctags_exclude = {
+		'.idea/*',
+		'*.git',
+		'*.svg',
+		'*.hg',
+		'*/tests/*',
+		'build',
+		'dist',
+		'bin',
+		'node_modules',
+		'cache',
+		'compiled',
+		'docs',
+		'example',
+		'vendor',
+		'*.md',
+		'*-lock.json',
+		'*.min.*',
+		'*.bak',
+		'*.pyc',
+		'*.class',
+		'*.tmp',
+		'*.cache',
+		'tags*',
+		'*.mp3',
+		'*.ogg',
+		'*.flac',
+		'*.swp',
+		'*.bmp',
+		'*.gif',
+		'*.ico',
+		'*.jpg',
+		'*.png',
+		'*.rar',
+		'*.zip',
+		'*.tar',
+		'*.tar.gz',
+		'*.tar.xz',
+		'*.tar.bz2',
+		'*.pdf',
+		'*.json',
+}
 
 -- gotoheader
 vim.g.goto_header_associate_cpp_h = 1
@@ -37,11 +79,14 @@ telescope.load_extension('ui-select')
 -- treesitter
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup({
-	ensure_installed = { "lua" },
-	auto_install = true,
-	highlight = {
-		enable = true,
-	}
+		ensure_installed = { "lua" },
+		auto_install = true,
+		highlight = {
+				enable = true,
+		},
+		indent = {
+				enable = true,
+		}
 })
 
 -- lsp
@@ -155,6 +200,6 @@ remote_sshfs.setup{
     },
   },
 }
-local remote_sshfs_connections = require('remote-sshfs.connections')
-remote_sshfs_connections.list_hosts()["ICG"]["Path"] = "/afs/cg.cs.tu-bs.de/home/heesen/"
-require('telescope').load_extension('remote-sshfs')
+--local remote_sshfs_connections = require('remote-sshfs.connections')
+--remote_sshfs_connections.list_hosts()["ICG"]["Path"] = "/afs/cg.cs.tu-bs.de/home/heesen/"
+--require('telescope').load_extension('remote-sshfs')
