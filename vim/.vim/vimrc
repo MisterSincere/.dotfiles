@@ -6,7 +6,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'elkowar/yuck.vim'
 Plug 'vim-utils/vim-man'
 Plug 'dag/vim-fish'
-Plug 'lyuts/vim-rtags'
 Plug 'zivyangll/git-blame.vim'
 "Plug 'ycm-core/YouCompleteMe'
 "Plug 'xavierd/clang_complete'
@@ -96,7 +95,7 @@ nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
 
 nnoremap <leader>b :<C-u>call gitblame#echo()<CR>
 
-imap jj <esc>
+imap jk <esc>
 
 autocmd FileType python map <buffer> <F9> :w<CR>:exec  '!python' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python' shellescape(@%, 1)<CR>

@@ -90,3 +90,6 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- search for tags file towards root if it not in cur dir
 vim.opt.tags = './tags,tags;$HOME'
+
+-- always show leftmost status column (lsp signs etc.)
+vim.opt.signcolumn = 'yes'
