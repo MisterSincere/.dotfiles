@@ -1,5 +1,5 @@
 @import "dialog.rasi"
 
 entry {
-  placeholder:    "Select audio input...";
+  placeholder:    "Select audio output...";
 }
