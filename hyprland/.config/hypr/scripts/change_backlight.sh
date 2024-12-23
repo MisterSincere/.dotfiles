@@ -1,6 +1,6 @@
 #!/bin/bash
 
-brightnessctl "$@"
+brightnessctl set $@
 
 msg_tag="brightnessbar"
 brightness=$(($(brightnessctl g) * 100 / $(brightnessctl m)))
