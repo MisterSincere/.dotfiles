@@ -12,24 +12,19 @@ Plug('nvim-treesitter/nvim-treesitter')
 -- let's try harpoon
 Plug('theprimeagen/harpoon')
 
---Plug('nelsyeung/twig.vim')
-
----- RUST ----
--- formatting
+-- rust formatting
 Plug('rust-lang/rust.vim')
 
----- CPP ----
--- automatic tag generation
---Plug('ludovicchabant/vim-gutentags')
--- debugging
+-- cpp debugging
 Plug('mfussenegger/nvim-dap')
 Plug('theHamsta/nvim-dap-virtual-text')
 -- cmake / building / execution
 Plug('Shatur/neovim-cmake')
 -- formatting
 Plug('rhysd/vim-clang-format')
--- other
---Plug('Yohannfra/Vim-Goto-Header')
+
+-- automatic tag generation
+Plug('ludovicchabant/vim-gutentags')
 
 -- python autopep8
 Plug 'tell-k/vim-autopep8'
@@ -44,11 +39,11 @@ Plug('nvim-telescope/telescope-ui-select.nvim')
 Plug('nvim-lua/plenary.nvim')
 
 -- keybinding <leader>u
---Plug('mbbill/undotree')
+Plug('mbbill/undotree')
 
 -- LSP Support
 Plug('neovim/nvim-lspconfig')
-Plug('williamboman/mason.nvim', {['do'] = ':MasonUpdate'})
+Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 	-- Autocompletion
 Plug('hrsh7th/nvim-cmp')
