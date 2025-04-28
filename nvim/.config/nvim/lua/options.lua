@@ -45,9 +45,6 @@ vim.opt.undodir = '/tmp/nvim/undodir'
 -- enable 24-bit rgb colors
 vim.opt.termguicolors = true
 
--- number of spaces tab expands to if expandtab is true
-vim.opt.tabstop = 2
-
 -- don't show evil swapfiles
 vim.opt.swapfile = false
 
@@ -72,6 +69,9 @@ vim.opt.smartcase = true
 
 -- automatically expand tabs to spaces
 vim.opt.expandtab = false
+
+-- number of spaces tab expands to if expandtab is true
+vim.opt.tabstop = 4
 
 -- display a vertical column at 80 characters
 --vim.opt.colorcolumn = '100'
