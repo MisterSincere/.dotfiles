@@ -38,39 +38,39 @@ end
 local mason_registry = require('mason-registry')
 require('mason').setup({})
 require('mason-lspconfig').setup({
-		ensure_installed = {
-				'html',
-				'phpactor',
-				'ts_ls',
-				'lua_ls',
-				'volar',
-				'twiggy_language_server'
-		},
-		handlers = {
-				default_setup,
-				pylsp = function()
-						lspconfig.pylsp.setup({
-								settings = {
-										pylsp = pylsp_config
-								}
-						})
-				end,
-		},
+	ensure_installed = {
+		'html',
+		'phpactor',
+		'ts_ls',
+		'lua_ls',
+		'volar',
+		'twiggy_language_server'
+	},
+	handlers = {
+		default_setup,
+		pylsp = function()
+			lspconfig.pylsp.setup({
+				settings = {
+					pylsp = pylsp_config
+				}
+			})
+		end,
+	},
 })
 lspconfig.ts_ls.setup({
-		init_options = {
-				plugins = {
-						{
-								name = '@vue/typescript-plugin',
-								location = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
-								languages = { 'javascript', 'typescript', 'vue' }
-						},
-				},
+	init_options = {
+		plugins = {
+			{
+				name = '@vue/typescript-plugin',
+				--location = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
+				languages = { 'javascript', 'typescript', 'vue' }
+			},
 		},
-		filetypes = { 'vue' }
+	},
+	filetypes = { 'vue' }
 })
 lspconfig.html.setup({
-		filetypes = { "twig", "html", "templ" }
+	filetypes = { "twig", "html", "templ" }
 })
 lspconfig.volar.setup({})
 
@@ -91,17 +91,17 @@ cmp.setup({
 })
 
 vim.diagnostic.config({
-		virtual_text = false,
-		float = {
-				focusable = false,
-				style =  "minimal",
-				border = "rounded",
-				source = "always",
-				header = "",
-				prefix = "",
-		},
-		signs = true,
-		underline = true,
-		update_in_insert = true,
-		severity_sort = false,
+	virtual_text = false,
+	float = {
+		focusable = false,
+		style =  "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = true,
+	severity_sort = false,
 });
