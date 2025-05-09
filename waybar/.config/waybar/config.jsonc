@@ -16,6 +16,7 @@
         "hyprland/window"
     ],
     "modules-right": [
+		"custom/timer",
         "mpd",
         "pulseaudio",
         "cpu",
@@ -44,10 +45,10 @@
             "default": ""
         }
     },
-		"hyprland/window": {
-				"max-length": 86,
-				"icon": false
-		},
+	"hyprland/window": {
+		"max-length": 86,
+		"icon": false
+	},
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -181,7 +182,7 @@
             "phone": " ",
             "portable": " ",
             "car": " ",
-            "default": ["", "", ""]
+            "default": ["", " ", " "]
         },
         "on-click": "pavucontrol"
     },
@@ -208,5 +209,10 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
-    }
+    },
+	"custom/timer": {
+		"exec" : "~/.config/waybar/scripts/timer.sh",
+		"interval" : 1,
+		"format" : "{text}",
+	}
 }
