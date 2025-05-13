@@ -19,6 +19,8 @@ function M.project_view()
 			'--strip-cwd-prefix',
 			'-e', '.h',
 			'-e', '.cpp',
+			'-e', '.qml',
+			'-e', '.desktop',
 			'-e', '.cu',
 			'-e', '.txt',
 			'-e', '.php',
