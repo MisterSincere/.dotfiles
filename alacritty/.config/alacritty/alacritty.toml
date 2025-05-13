@@ -1,12 +1,12 @@
 [font]
-size = 16.0
+size = 15.0
 
 [font.bold]
 family = "Ubuntu Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "monospace"
+family = "Ubuntu Mono"
 style = "Bold"
 
 [font.italic]
