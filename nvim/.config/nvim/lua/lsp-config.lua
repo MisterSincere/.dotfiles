@@ -43,7 +43,7 @@ require('mason-lspconfig').setup({
 		'phpactor',
 		'ts_ls',
 		'lua_ls',
-		'volar',
+		'vue_ls',
 		'twiggy_language_server'
 	},
 	handlers = {
@@ -62,7 +62,7 @@ lspconfig.ts_ls.setup({
 		plugins = {
 			{
 				name = '@vue/typescript-plugin',
-				--location = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server',
+				location = vim.fn.expand("$MASON/packages/vue-language-server") .. '/node_modules/@vue/language-server',
 				languages = { 'javascript', 'typescript', 'vue' }
 			},
 		},
