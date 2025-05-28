@@ -40,7 +40,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = {
 		'html',
-		'phpactor',
+		'intelephense',
 		'ts_ls',
 		'lua_ls',
 		'vue_ls',
@@ -73,6 +73,20 @@ lspconfig.html.setup({
 	filetypes = { "twig", "html", "templ" }
 })
 lspconfig.volar.setup({})
+lspconfig.intelephense.setup({
+	cmd = { 'intelephense', '--stdio' },
+	filetypes = { 'php' },
+	settings = {
+		intelephense = {
+			environment = {
+				includePaths = {
+					vim.fn.expand("$HOME/iserv/copy/iserv3/vendor/"),
+					vim.fn.expand("$HOME/iserv/copy/iserv3/core/"),
+				}
+			}
+		}
+	},
+})
 
 local cmp = require('cmp')
 cmp.setup({
