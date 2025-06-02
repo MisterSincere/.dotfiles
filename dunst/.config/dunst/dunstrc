@@ -24,13 +24,13 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 400
+    width = (300, 400)
 
     # The maximum height of a single notification, excluding the frame.
-    height = 60
+    height = (0, 100)
 
     # Position the notification in the top right corner
-    origin = top-left
+    origin = bottom-left
 
     # Offset from the origin
     offset = (0, 0)
@@ -89,7 +89,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#df20df"
+    frame_color = "#33ccffee"
 
     # Define a color for the separator.
     # possible values are:
@@ -111,7 +111,7 @@
 
     ### Text ###
 
-    font = Ubuntu Light 11
+    font = Ubuntu Light 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -294,8 +294,8 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#111111F0"
     foreground = "#FFFFFFFF"
-    frame_color = "#FF9FFF"
-    highlight = "#FF9FFF"
+    frame_color = "#33ccffee"
+    highlight = "#33ccffee"
     timeout = 4
     # Icon for notifications with low urgency, uncomment to enable
     #new_icon = /path/to/icon
