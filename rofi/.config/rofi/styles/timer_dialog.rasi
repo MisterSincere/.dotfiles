@@ -1,9 +1,20 @@
 @import "dialog.rasi"
 
+prompt {
+	enabled: true;
+	padding: 0.4% 0.3% 0% 0%;
+	text-color: @timer;
+	background-color: @bg;
+	margin: 0;
+	font: "Nerd Font 18";
+}
+
 entry {
-  placeholder:    "Enter time...";
+	placeholder: "Enter time...";
 }
 
 window {
-  height: 70px;
+	height: 70px;
+	border-color: @timer;
+	width: 27%;
 }

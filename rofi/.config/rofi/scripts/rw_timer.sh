@@ -15,7 +15,7 @@ else
   done <$tmp_file
 fi
 
-sel="$(rofi -dmenu -theme "$dir/styles/timer_dialog.rasi")"
+sel="$(rofi -dmenu -theme "$dir/styles/timer_dialog.rasi" -p " ")"
 
 shopt -s nocasematch
 if [[ $sel == "stop" ]] || [[ $sel == "s" ]] || [[ $sel == "q" ]]; then

@@ -20,41 +20,35 @@ button:hover {
 
 /* LEFT */
 #custom-media {
-    background-color: @spotify_media_bg;
+    background-color: @media_spotify_bg;
 	padding-left: 10px;
     color: @media_fg;
     min-width: 100px;
-}
-#custom-media.custom-spotify {
-    background-color: @media_spotify_bg;
-}
-#custom-media.custom-vlc {
-    background-color: @media_vlc_bg;
 }
 
 /* CENTER */
 #workspaces button {
 	padding: 0 7px;
 	margin: 0;
-	background-color: @ws_active_bg;
-	color: #fff;
+	background-color: @ws_bg;
+	color: @ws_fg;
 	min-width: 20px;
-	box-shadow: inset 0px 3px @right_mods_bg;
+	box-shadow: inset 0px 3px @ws_splash;
 }
 #workspaces button:hover {
-	background-color: @module_mono_bg;
-	box-shadow: inset 0px 3px #eee;
+	background-color: @ws_active_bg;
+	box-shadow: inset 0px 3px @ws_active_fg;
 }
 #workspaces button.active {
-	background-color: @module_mono_bg;
-	box-shadow: inset 0px 3px #eee;
+	background-color: @ws_active_bg;
+	box-shadow: inset 0px 3px @ws_active_fg;
 }
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
 #submap {
 	background-color: @ws_active_bg;
-    box-shadow: inset 0 -2px @ws_splash;
+    box-shadow: inset 0 3px @ws_active_fg;
 }
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
@@ -73,14 +67,30 @@ button:hover {
 #memory,
 #custom-gpu-usage,
 #custom-gpu-temp,
+#custom-hardware-icon,
 #tray,
 #clock {
 	background-color: @right_mods_bg;
-    padding: 0 4px;
+    padding: 0 6px;
     color: @right_mods_fg;
+}
+#custom-timer {
+	background-color: @timer_bg;
+	color: @timer_fg;
+	padding-right: 4px;
+}
+#custom-hardware-icon {
+	padding-left: 8px;
+	padding-right: 6px;
 }
 #clock {
 	padding-right: 8px;
+}
+#temperature {
+	padding-left: 3px;
+}
+#cpu {
+	padding-right: 3px;
 }
 #temperature.critical {
     background-color: #eb4d4b;
@@ -101,11 +111,7 @@ button:hover {
     background-color: #eb4d4b;
 }
 #pulseaudio:hover,
-#cpu:hover,
-#temperature:hover,
-#memory:hover,
-#custom-gpu-usage:hover,
-#custom-gpu-temp:hover,
+#custom-hardware-icon:hover,
 #clock:hover {
 	background-color: @right_mods_hover_bg;
 }
@@ -115,13 +121,13 @@ label:focus {
     background-color: #000000;
 }
 
-#custom-left-end-right,
+#custom-media-end-right,
 #custom-std-end-left,
 #custom-std-end-right,
 #custom-right-end-right,
 #custom-right-end-left,
 #custom-timer-right-end,
-#custom-timer-right-end-begin {
+#custom-timer-right-left {
 	font-family: Nerd Font;
 	font-size: 24px;
 	padding: 0;
@@ -129,15 +135,21 @@ label:focus {
 }
 #custom-std-end-left,
 #custom-std-end-right {
-	color: @ws_active_bg;
+	color: @ws_bg;
 	font-size: 21px;
-	border-top: 3px solid @right_mods_bg;
+	border-top: 3px solid @ws_splash;
 }
 #custom-right-end-left,
-#custom-right-end-right,
-#custom-timer-right-end,
-#custom-timer-right-end-begin {
+#custom-right-end-right {
 	color: @right_mods_bg;
+}
+#custom-timer-right-left {
+	box-shadow: inset 0px 1px @timer_bg;
+	color: @timer_bg;
+}
+#custom-timer-right-end {
+	color: @timer_bg;
+	box-shadow: inset 0px -2px @timer_bg;
 }
 #custom-right-end-left {
 	box-shadow: inset 0px 1px @right_mods_bg;
@@ -145,7 +157,7 @@ label:focus {
 #custom-right-end-right {
 	box-shadow: inset 0px -2px @right_mods_bg;
 }
-#custom-left-end-right {
+#custom-media-end-right {
 	box-shadow: inset 0px 1.5px @media_spotify_bg;
 	color: @media_spotify_bg;
 }
@@ -153,6 +165,6 @@ label:focus {
 #custom-mono-spacer {
 	min-width: 6px;
 	padding: 0;
-	background-color: @ws_active_bg;
+	background-color: @ws_bg;
 	box-shadow: inset 0px 3px @right_mods_bg;
 }
