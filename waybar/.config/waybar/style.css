@@ -131,6 +131,7 @@ label:focus {
 }
 #custom-std-end-left,
 #custom-std-end-right {
+	font-size: 27px;
 	color: @ws_active_bg;
 	border-top: 3px solid @right_mods_bg;
 }
