@@ -7,6 +7,8 @@
     transition-duration: .3s;
 	border: none;
     border-radius: 0;
+	margin: 0;
+	padding: 0;
 }
 #waybar {
 	background-color: @bar_bg;
@@ -72,15 +74,13 @@ button:hover {
 #custom-gpu-usage,
 #custom-gpu-temp,
 #tray,
-#clock,
-#custom-separator {
+#clock {
 	background-color: @right_mods_bg;
     padding: 0 4px;
     color: @right_mods_fg;
 }
-#custom-separator {
-	color: #aaa;
-	font-size: 20px;
+#clock {
+	padding-right: 8px;
 }
 #temperature.critical {
     background-color: #eb4d4b;
@@ -99,9 +99,6 @@ button:hover {
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
-}
-#clock:hover {
-	background-color: rgba(51, 204, 255, 0.6);
 }
 #pulseaudio:hover,
 #cpu:hover,
@@ -125,23 +122,31 @@ label:focus {
 #custom-right-end-left,
 #custom-timer-right-end,
 #custom-timer-right-end-begin {
-	font-size: 30px;
+	font-family: Nerd Font;
+	font-size: 24px;
 	padding: 0;
 	background-color: @bar_bg;
 }
 #custom-std-end-left,
 #custom-std-end-right {
-	font-size: 27px;
 	color: @ws_active_bg;
+	font-size: 21px;
 	border-top: 3px solid @right_mods_bg;
 }
-#custom-right-end-right,
 #custom-right-end-left,
+#custom-right-end-right,
 #custom-timer-right-end,
 #custom-timer-right-end-begin {
 	color: @right_mods_bg;
 }
+#custom-right-end-left {
+	box-shadow: inset 0px 1px @right_mods_bg;
+}
+#custom-right-end-right {
+	box-shadow: inset 0px -2px @right_mods_bg;
+}
 #custom-left-end-right {
+	box-shadow: inset 0px 1.5px @media_spotify_bg;
 	color: @media_spotify_bg;
 }
 
