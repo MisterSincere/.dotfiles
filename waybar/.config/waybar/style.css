@@ -1,286 +1,152 @@
+@import url("colors.css");
+
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Ubuntu Light, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-}
-
-window#waybar {
-    background-color: rgba(43, 48, 59, 0);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
-}
-
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
+    font-family: FontAwesome, Ubuntu Light, sans-serif;
+    font-size: 16px;
+    transition-property: background-color, box-shadow;
+    transition-duration: .3s;
+	border: none;
     border-radius: 0;
 }
-
+#waybar {
+	background-color: @bar_bg;
+}
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px transparent;
 }
 
+/* LEFT */
+#custom-media {
+    background-color: @spotify_media_bg;
+	padding-left: 10px;
+    color: @media_fg;
+    min-width: 100px;
+}
+#custom-media.custom-spotify {
+    background-color: @media_spotify_bg;
+}
+#custom-media.custom-vlc {
+    background-color: @media_vlc_bg;
+}
+
+/* CENTER */
 #workspaces button {
-    padding: 0 7px;
-    background-color: transparent;
-    color: #ffffff;
+	padding: 0 7px;
+	margin: 0;
+	background-color: @ws_active_bg;
+	color: #fff;
 	min-width: 20px;
-	border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+	box-shadow: inset 0px 3px @right_mods_bg;
 }
 #workspaces button:hover {
-	background-color: rgba(20, 20, 20, 0.5);
+	background-color: @module_mono_bg;
+	box-shadow: inset 0px 3px #eee;
 }
 #workspaces button.active {
-	background-color: rgba(20, 20, 20, 0.5);
-	border-bottom: 3px solid #fff;
+	background-color: @module_mono_bg;
+	box-shadow: inset 0px 3px #eee;
 }
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
-
-#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+#submap {
+	background-color: @ws_active_bg;
+    box-shadow: inset 0 -2px @ws_splash;
 }
-
-#window,
-#workspaces {
-    margin: 0;
-}
-
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 0px;
 }
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
 }
 
-/* modules on the right side */
-#clock,
-#cpu,
-#memory,
-#temperature,
-#pulseaudio,
-#tray,
-#mode,
+/* RIGHT SIDE */
 #custom-timer,
+#pulseaudio,
+#cpu,
+#temperature,
+#memory,
 #custom-gpu-usage,
 #custom-gpu-temp,
-#custom-separator,
-#custom-right-hemisphere-left {
-	background-color: rgba(51, 204, 255, 0.3);
+#tray,
+#clock,
+#custom-separator {
+	background-color: @right_mods_bg;
     padding: 0 4px;
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .1s;
+    color: @right_mods_fg;
 }
-
 #custom-separator {
 	color: #aaa;
 	font-size: 20px;
 }
-
-#pulseaudio {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#pulseaudio:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-    transition-property: background-color;
-    transition-duration: .3s;
+#temperature.critical {
+    background-color: #eb4d4b;
 }
 #pulseaudio.muted {
     background-color: #90b1b1;
     color: #2a5c45;
 }
-
-#cpu {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#cpu:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-	transition-property: background-color;
-    transition-duration: .3s;
-}
-
-#temperature {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#temperature:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-	transition-property: background-color;
-    transition-duration: .3s;
-}
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#memory {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#memory:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-	transition-property: background-color;
-    transition-duration: .3s;
-}
-
-
-#custom-gpu-usage {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#custom-gpu-usage:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-	transition-property: background-color;
-    transition-duration: .3s;
-}
-#custom-gpu-temp {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#custom-gpu-temp:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-	transition-property: background-color;
-    transition-duration: .3s;
-}
-
-#clock {
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-#clock:hover {
-	background-color: rgba(51, 204, 255, 0.6);
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#custom-media {
-    background-color: #66cc99;
-	padding: 0 10px;
-    color: #2a5c45;
-    min-width: 100px;
-	border-radius: 0px 0px 30px 0px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
 #tray {
-	padding-right: 8px;
+	padding-right: 10px;
+	padding-left: 8px;
 }
-
 #tray > .passive {
     -gtk-icon-effect: dim;
 }
-
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
 }
-
-#idle_inhibitor {
-    background-color: #2d3436;
+#clock:hover {
+	background-color: rgba(51, 204, 255, 0.6);
+}
+#pulseaudio:hover,
+#cpu:hover,
+#temperature:hover,
+#memory:hover,
+#custom-gpu-usage:hover,
+#custom-gpu-temp:hover,
+#clock:hover {
+	background-color: @right_mods_hover_bg;
 }
 
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+/* needed ?!? */
+label:focus {
+    background-color: #000000;
 }
 
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
+#custom-left-end-right,
+#custom-std-end-left,
+#custom-std-end-right,
+#custom-right-end-right,
+#custom-right-end-left,
+#custom-timer-right-end,
+#custom-timer-right-end-begin {
+	font-size: 30px;
+	padding: 0;
+	background-color: @bar_bg;
+}
+#custom-std-end-left,
+#custom-std-end-right {
+	color: @ws_active_bg;
+	border-top: 3px solid @right_mods_bg;
+}
+#custom-right-end-right,
+#custom-right-end-left,
+#custom-timer-right-end,
+#custom-timer-right-end-begin {
+	color: @right_mods_bg;
+}
+#custom-left-end-right {
+	color: @media_spotify_bg;
 }
 
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#keyboard-state {
-    border-bottom: 3px solid #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#custom-center-hemisphere-left {
-	min-width: 25px;
-	background-color: rgba(20, 20, 20, 0.5);
-	border-radius: 0px 0px 0px 30px;
-	border-bottom: 3px solid #FFF;
-	border-left: 3px solid #FFF;
-}
-#custom-center-hemisphere-right {
-	min-width: 25px;
-	background-color: rgba(20, 20, 20, 0.5);
-	border-radius: 0px 0px 30px 0px;
-	border-bottom: 3px solid #FFF;
-	border-right: 3px solid #FFF;
-}
-#custom-right-hemisphere-left {
-	min-width: 25px;
-	border-radius: 0px 0px 0px 30px;
-}
-
-#submap {
-	background-color: rgba(20, 20, 20, 0.5);
-	border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+#custom-mono-spacer {
+	min-width: 6px;
+	padding: 0;
+	background-color: @ws_active_bg;
+	box-shadow: inset 0px 3px @right_mods_bg;
 }
