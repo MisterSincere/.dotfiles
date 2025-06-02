@@ -1,3 +1,4 @@
+
 @define-color bar_bg transparent;
 
 @define-color ws_bg #111;
@@ -7,7 +8,12 @@
 @define-color ws_active_fg #fff;
 @define-color ws_splash @right_mods_bg;
 
-@define-color media_spotify_bg #66cc99;
+@define-color left_mods_bg @right_mods_bg;
+@define-color left_mods_fg #fff;
+@define-color left_mods_hover_bg @right_mods_hover_bg;
+@define-color left_mods_hover_fg @left_mods_fg;
+
+@define-color media_bg #66cc99;
 @define-color media_fg #2a5c45;
 
 @define-color timer_bg #890131;

@@ -1,12 +1,12 @@
 @import url("colors.css");
 
 * {
-    font-family: FontAwesome, Ubuntu Light, sans-serif;
-    font-size: 16px;
-    transition-property: background-color, box-shadow;
-    transition-duration: .3s;
+	font-family: FontAwesome, Ubuntu Light, sans-serif;
+	font-size: 16px;
+	transition-property: background-color, box-shadow;
+	transition-duration: .3s;
 	border: none;
-    border-radius: 0;
+	border-radius: 0;
 	margin: 0;
 	padding: 0;
 }
@@ -15,15 +15,30 @@
 }
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
+	background: inherit;
 }
 
 /* LEFT */
+#custom-power,
+#custom-quit,
+#custom-lock,
+#custom-reboot {
+	padding: 0px 5px 0px 10px;
+	background-color: @left_mods_bg;
+	color: @left_mods_fg;
+}
+#custom-power:hover,
+#custom-quit:hover,
+#custom-lock:hover,
+#custom-reboot:hover {
+	background-color: @left_mods_hover_bg;
+	color: @left_mods_hover_fg;
+}
 #custom-media {
-    background-color: @media_spotify_bg;
+	background-color: @media_bg;
 	padding-left: 10px;
-    color: @media_fg;
-    min-width: 100px;
+	color: @media_fg;
+	min-width: 100px;
 }
 
 /* CENTER */
@@ -44,19 +59,19 @@ button:hover {
 	box-shadow: inset 0px 3px @ws_active_fg;
 }
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+	background-color: #eb4d4b;
 }
 #submap {
 	background-color: @ws_active_bg;
-    box-shadow: inset 0 3px @ws_active_fg;
+	box-shadow: inset 0 3px @ws_active_fg;
 }
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0px;
+	margin-left: 0px;
 }
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 /* RIGHT SIDE */
@@ -71,8 +86,8 @@ button:hover {
 #tray,
 #clock {
 	background-color: @right_mods_bg;
-    padding: 0 6px;
-    color: @right_mods_fg;
+	padding: 0 6px;
+	color: @right_mods_fg;
 }
 #custom-timer {
 	background-color: @timer_bg;
@@ -93,22 +108,22 @@ button:hover {
 	padding-right: 3px;
 }
 #temperature.critical {
-    background-color: #eb4d4b;
+	background-color: #eb4d4b;
 }
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+	background-color: #90b1b1;
+	color: #2a5c45;
 }
 #tray {
 	padding-right: 10px;
 	padding-left: 8px;
 }
 #tray > .passive {
-    -gtk-icon-effect: dim;
+	-gtk-icon-effect: dim;
 }
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+	-gtk-icon-effect: highlight;
+	background-color: #eb4d4b;
 }
 #pulseaudio:hover,
 #custom-hardware-icon:hover,
@@ -118,12 +133,13 @@ button:hover {
 
 /* needed ?!? */
 label:focus {
-    background-color: #000000;
+	background-color: #000000;
 }
 
 #custom-media-end-right,
 #custom-std-end-left,
 #custom-std-end-right,
+#custom-left-end-right,
 #custom-right-end-right,
 #custom-right-end-left,
 #custom-timer-right-end,
@@ -138,6 +154,11 @@ label:focus {
 	color: @ws_bg;
 	font-size: 21px;
 	border-top: 3px solid @ws_splash;
+}
+#custom-left-end-right {
+	color: @left_mods_bg;
+	font-size: 25px;
+	box-shadow: inset 0px 1px @left_mods_bg;
 }
 #custom-right-end-left,
 #custom-right-end-right {
@@ -158,8 +179,8 @@ label:focus {
 	box-shadow: inset 0px -2px @right_mods_bg;
 }
 #custom-media-end-right {
-	box-shadow: inset 0px 1.5px @media_spotify_bg;
-	color: @media_spotify_bg;
+	box-shadow: inset 0px 1.5px @media_bg;
+	color: @media_bg;
 }
 
 #custom-mono-spacer {

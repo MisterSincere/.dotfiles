@@ -7,6 +7,8 @@
 	"spacing": 0, // Gaps between modules (4px)
 	// Choose the order of the modules
 	"modules-left": [
+		"group/power",
+		"custom/left-end-right",
 		"custom/media",
 		"custom/media-end-right",
 	],
@@ -32,6 +34,35 @@
 		"tray",
 		"clock",
 	],
+	"group/power": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 400,
+			"transition-left-to-right": true,
+		},
+		"modules": [
+			"custom/power",
+			"custom/quit",
+			"custom/lock",
+			"custom/reboot",
+		],
+	},
+	"custom/power": {
+		"format": " ",
+		"tooltip": false,
+	},
+	"custom/quit": {
+		"format": "󰗼 ",
+		"tooltip": false,
+	},
+	"custom/lock": {
+		"format": "󰍁 ",
+		"tooltip": false,
+	},
+	"custom/reboot": {
+		"format": "󰜉 ",
+		"tooltip": false,
+	},
 	"group/hardware": {
 		"orientation": "inherit",
 		"drawer": {
@@ -88,7 +119,7 @@
 	"clock": {
 		// "timezone": "America/New_York",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-		"format-alt": "{:%Y-%m-%d}"
+		"on-click": "firefox --new-tab \"https://calendar.proton.me\"",
 	},
 	"cpu": {
 		"format": "{usage}%",
@@ -197,6 +228,10 @@
 	},
 	"custom/right-end-right": {
 		"format": "",
+		"tooltip": false,
+	},
+	"custom/left-end-right": {
+		"format": "",
 		"tooltip": false,
 	},
 	"custom/right-end-left": {
