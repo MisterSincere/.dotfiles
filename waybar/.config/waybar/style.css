@@ -36,7 +36,8 @@ button:hover {
 }
 #custom-media {
 	background-color: @media_bg;
-	padding-left: 10px;
+	padding-left: 5px;
+	padding-right: 0;
 	color: @media_fg;
 	min-width: 100px;
 }
@@ -136,6 +137,7 @@ label:focus {
 	background-color: #000000;
 }
 
+#custom-media-end-left,
 #custom-media-end-right,
 #custom-std-end-left,
 #custom-std-end-right,
@@ -178,9 +180,15 @@ label:focus {
 #custom-right-end-right {
 	box-shadow: inset 0px -2px @right_mods_bg;
 }
+#custom-media-end-left,
+#custom-media-end-right {
+	color: @media_bg;
+}
+#custom-media-end-left {
+	box-shadow: inset 0px -2px @media_bg;
+}
 #custom-media-end-right {
 	box-shadow: inset 0px 1.5px @media_bg;
-	color: @media_bg;
 }
 
 #custom-mono-spacer {

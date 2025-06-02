@@ -9,6 +9,7 @@
 	"modules-left": [
 		"group/power",
 		"custom/left-end-right",
+		"custom/media-end-left",
 		"custom/media",
 		"custom/media-end-right",
 	],
@@ -50,18 +51,22 @@
 	"custom/power": {
 		"format": " ",
 		"tooltip": false,
+		"on-click": "shutdown now",
 	},
 	"custom/quit": {
 		"format": "󰗼 ",
 		"tooltip": false,
+		"on-click": "hyprctl dispatch exit",
 	},
 	"custom/lock": {
 		"format": "󰍁 ",
 		"tooltip": false,
+		"on-click": "hyprlock",
 	},
 	"custom/reboot": {
 		"format": "󰜉 ",
 		"tooltip": false,
+		"on-click": "reboot",
 	},
 	"group/hardware": {
 		"orientation": "inherit",
@@ -236,6 +241,13 @@
 	},
 	"custom/right-end-left": {
 		"format": "",
+		"tooltip": false,
+	},
+	"custom/media-end-left": {
+		"exec": "echo \"\"",
+		"interval": 1,
+		"exec-if": "$HOME/.config/waybar/scripts/mediaplayer_active.sh",
+		"format": "{}",
 		"tooltip": false,
 	},
 	"custom/media-end-right": {
