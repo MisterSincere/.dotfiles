@@ -6,6 +6,9 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug('khaveesh/vim-fish-syntax')
 Plug('tikhomirov/vim-glsl')
 
+-- highlight colors to how they look like
+Plug('brenoprata10/nvim-highlight-colors')
+
 -- tree sitter for highlighting
 Plug('nvim-treesitter/nvim-treesitter')
 
