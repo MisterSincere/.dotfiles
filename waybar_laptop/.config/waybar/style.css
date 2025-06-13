@@ -78,6 +78,8 @@ button:hover {
 /* RIGHT SIDE */
 #custom-timer,
 #pulseaudio,
+#power-profiles-daemon,
+#battery,
 #cpu,
 #temperature,
 #memory,
@@ -103,6 +105,10 @@ button:hover {
 #temperature {
 	padding-left: 3px;
 }
+#power-profiles-daemon {
+	min-width: 20px;
+	padding-right: 8px;
+}
 #cpu {
 	padding-right: 3px;
 }
@@ -124,6 +130,7 @@ button:hover {
 	-gtk-icon-effect: highlight;
 	background-color: #eb4d4b;
 }
+#power-profiles-daemon:hover,
 #pulseaudio:hover,
 #custom-hardware-icon:hover,
 #clock:hover {
