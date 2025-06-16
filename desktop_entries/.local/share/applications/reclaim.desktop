@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Version=1.0
-Name=Reclaim
-Comment=Calendar Management Tool
-Exec=firefox --kiosk --new-window https://app.reclaim.ai
-Icon=reclaim
