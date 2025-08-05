@@ -28,6 +28,7 @@ function M.project_view()
 			'-e', '.comp',
 			'-e', '.conf',
 			'-e', '.yaml',
+			'-e', '.yml',
 			'-e', '.glsl',
 			'-e', '.vert',
 			'-e', '.frag',
