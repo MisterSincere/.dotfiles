@@ -35,15 +35,14 @@ local default_setup = function(server)
 	})
 end
 
-local mason_registry = require('mason-registry')
 require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = {
 		'html',
 		'phpactor',
-		'ts_ls',
+		'vtsls',
 		'lua_ls',
-		'volar',
+		'vue_ls',
 		'twiggy_language_server'
 	},
 	handlers = {
@@ -57,22 +56,33 @@ require('mason-lspconfig').setup({
 		end,
 	},
 })
-lspconfig.ts_ls.setup({
-	init_options = {
-		plugins = {
-			{
-				name = '@vue/typescript-plugin',
-				location = vim.fn.expand("$MASON/packages/vue-language-server") .. '/node_modules/@vue/language-server',
-				languages = { 'javascript', 'typescript', 'vue' }
-			},
-		},
-	},
-	filetypes = { 'vue' }
-})
 lspconfig.html.setup({
 	filetypes = { "twig", "html", "templ" }
 })
-lspconfig.volar.setup({})
+local vue_plugin = {
+	name = '@vue/typescript-plugin',
+	location = vim.fn.expand("$MASON/packages/vue-language-server") .. '/node_modules/@vue/language-server',
+	languages = { 'vue' },
+	configNamespace = 'typescript',
+}
+local vtsls_config = {
+	settings = {
+		vtsls = {
+			tsserver = {
+				globalPlugins = {
+					vue_plugin,
+				},
+			},
+		},
+	},
+	filetypes = { 'typescript', 'javascript', 'vue' }
+}
+local vue_ls_config = {}
+
+vim.lsp.config('vtsls', vtsls_config)
+vim.lsp.config('vue_ls', vue_ls_config)
+vim.lsp.enable({'vtsls', 'vue_ls'})
+
 
 local cmp = require('cmp')
 cmp.setup({
