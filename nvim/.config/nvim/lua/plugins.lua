@@ -34,6 +34,9 @@ Plug 'tell-k/vim-autopep8'
 -- used in status line to display git status
 Plug('tpope/vim-fugitive')
 
+-- session saving
+Plug('tpope/vim-obsession')
+
 -- nvim dialog tool
 Plug('nvim-telescope/telescope.nvim')
 Plug('nvim-telescope/telescope-ui-select.nvim')

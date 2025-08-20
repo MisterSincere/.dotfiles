@@ -4,3 +4,4 @@ set statusline+=%=
 set statusline+=%{gutentags#statusline()}
 set statusline+=\ %l/%L
 set statusline+=\ %y
+set statusline+=\ %{ObsessionStatus()}
