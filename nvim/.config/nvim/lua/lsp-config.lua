@@ -43,6 +43,7 @@ require('mason-lspconfig').setup({
 		'vtsls',
 		'volar',
 		'lua_ls',
+		'pylsp',
 		'twiggy_language_server'
 	},
 	handlers = {
