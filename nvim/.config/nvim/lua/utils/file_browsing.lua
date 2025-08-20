@@ -53,6 +53,7 @@ function M.project_view()
 			'--exclude', 'var',
 			'--exclude', 'vendor',
 			'--exclude', 'bin',
+			'--exclude', 'dist',
 			'--exclude', 'lib',
 			'--exclude', 'lib/vkrenderer/libs',
 			'--exclude', 'build-debug',
