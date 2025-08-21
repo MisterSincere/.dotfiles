@@ -1,203 +1,188 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 0, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/submap",
-        "hyprland/scratchpad",
-        "custom/media"
-    ],
-    "modules-center": [
-        "hyprland/window"
-    ],
-    "modules-right": [
-        "mpd",
-        "pulseaudio",
-        "cpu",
-        "memory",
-        "temperature",
-        "power-profiles-daemon",
-        "battery",
-        "clock",
-        "tray",
-    ],
-    // Modules configuration
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
-		"hyprland/window": {
-				"max-length": 86,
-				"icon": false
+	// "layer": "top", // Waybar at top layer
+	"position": "top", // Waybar position (top|bottom|left|right)
+	"height": 30, // Waybar height (to be removed for auto height)
+	// "width": 1280, // Waybar width
+	"spacing": 0, // Gaps between modules (4px)
+	// Choose the order of the modules
+	"modules-left": [
+		"group/power",
+		"custom/left-end-right",
+		"custom/media-end-left",
+		"custom/media",
+		"custom/media-end-right",
+	],
+	"modules-center": [
+		"custom/std-end-left",
+		"custom/mono-spacer", 
+		"hyprland/workspaces",
+		"hyprland/submap",
+		"custom/mono-spacer", 
+		"custom/std-end-right",
+	],
+	"modules-right": [
+		"custom/timer-right-left",
+		"custom/timer",
+		"custom/timer-right-end",
+		"custom/right-end-left",
+		"group/hardware",
+		"custom/right-end-right",
+		"custom/right-end-left",
+		"pulseaudio",
+		"custom/right-end-right",
+		"custom/right-end-left",
+		"tray",
+		"clock",
+	],
+	"group/power": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 400,
+			"transition-left-to-right": true,
 		},
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "hyprland/submap": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}%",
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}  {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": " ",
-            "headset": " ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/power": {
-        "format" : "⏻ ",
+		"modules": [
+			"custom/power",
+			"custom/quit",
+			"custom/lock",
+			"custom/reboot",
+		],
+	},
+	"custom/power": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": "shutdown now",
+	},
+	"custom/quit": {
+		"format": "󰗼 ",
+		"tooltip": false,
+		"on-click": "hyprctl dispatch exit",
+	},
+	"custom/lock": {
+		"format": "󰍁 ",
+		"tooltip": false,
+		"on-click": "hyprlock",
+	},
+	"custom/reboot": {
+		"format": "󰜉 ",
+		"tooltip": false,
+		"on-click": "reboot",
+	},
+	"group/hardware": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 400,
+			"transition-left-to-right": false,
+			"click-to-reveal": true,
+		},
+		"modules": [
+			"custom/hardware-icon",
+			"cpu",
+			"temperature",
+			"memory",
+			"custom/gpu-usage",
+			"custom/gpu-temp",
+		],
+	},
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": false,
+		"warp-on-scroll": false,
+		"format": " {name}: {icon} ",
+		"format-icons": {
+			"1": "",
+			"2": "󰈹",
+			"3": "󰊖",
+			"4": "",
+			"5": "",
+			"6": "",
+			"7": "󰄀",
+			"urgent": "",
+			"focused": "",
+			"default": ""
+		}
+	},
+	"hyprland/window": {
+		"max-length": 86,
+		"icon": false
+	},
+	"keyboard-state": {
+		"numlock": true,
+		"capslock": true,
+		"format": "{name} {icon}",
+		"format-icons": {
+			"locked": "",
+			"unlocked": ""
+		}
+	},
+	"hyprland/submap": {
+		"format": "  <span style=\"italic\">{}</span>  "
+	},
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		// "timezone": "America/New_York",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"on-click": "firefox --new-tab \"https://calendar.proton.me\"",
+	},
+	"cpu": {
+		"format": "{usage}%",
+		"tooltip": true
+	},
+	"memory": {
+		"format": "{}%  ",
+		"interval": 2,
+	},
+	"temperature": {
+		// "thermal-zone": 2,
+		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 80,
+		// "format-critical": "{temperatureC}°C {icon}",
+		"format": "{temperatureC}°C   ",
+	},
+	"network": {
+		// "interface": "wlp2*", // (Optional) To force the use of this interface
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ipaddr}/{cidr} ",
+		"tooltip-format": "{ifname} via {gwaddr} ",
+		"format-linked": "{ifname} (No IP) ",
+		"format-disconnected": "Disconnected ⚠",
+		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+	},
+	"pulseaudio": {
+		"scroll-step": 1, // %, can be a float
+		"format": "{volume}% {icon}  {format_source}",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "{volume}%  ",
+		"format-source-muted": "  ",
+		"format-icons": {
+			"headphone": " ",
+			"hands-free": " ",
+			"headset": " ",
+			"phone": " ",
+			"portable": " ",
+			"car": " ",
+			"default": ["", " ", "  "]
+		},
+		"on-click": "pavucontrol"
+	},
+	"custom/hardware-icon": {
+		"format": " ",
+		"tooltip": false,
+	},
+	"custom/media": {
+		"format": "{text}    ",
+		"return-type": "json",
+		"max-length": 60,
+		"escape": true,
+		"exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+	},
+	"custom/power": {
+		"format" : "⏻ ",
 		"tooltip": false,
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
@@ -207,5 +192,74 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
-    }
+	},
+	"custom/timer": {
+		"exec": "$HOME/.config/waybar/scripts/timer.sh",
+		"interval": 1,
+		"format": "{}",
+		"tooltip": false,
+		"on-click": "$HOME/.config/rofi/scripts/rw_timer.sh",
+	},
+	"custom/timer-right-end": {
+		"exec": "echo \"\"",
+		"interval": 1,
+		"exec-if": "$HOME/.config/waybar/scripts/timer_active.sh",
+		"format": "{}",
+	},
+	"custom/timer-right-left": {
+		"exec": "echo \"\"",
+		"interval": 1,
+		"exec-if": "$HOME/.config/waybar/scripts/timer_active.sh",
+		"format": "{}",
+	},
+	"custom/gpu-usage": {
+		"format": "{text}%",
+		"exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+		"interval": 1,
+		"tooltip": false,
+	},
+	"custom/gpu-temp": {
+		"format": "{text}°C  ",
+		"exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+		"interval": 1,
+		"tooltip": false,
+	},
+	"custom/std-end-left": {
+		"format": "",
+		"tooltip": false,
+	},
+	"custom/std-end-right": {
+		"format": "",
+		"tooltip": false,
+	},
+	"custom/right-end-right": {
+		"format": "",
+		"tooltip": false,
+	},
+	"custom/left-end-right": {
+		"format": "",
+		"tooltip": false,
+	},
+	"custom/right-end-left": {
+		"format": "",
+		"tooltip": false,
+	},
+	"custom/media-end-left": {
+		"exec": "echo \"\"",
+		"interval": 1,
+		"exec-if": "$HOME/.config/waybar/scripts/mediaplayer_active.sh",
+		"format": "{}",
+		"tooltip": false,
+	},
+	"custom/media-end-right": {
+		"exec": "echo \"\"",
+		"interval": 1,
+		"exec-if": "$HOME/.config/waybar/scripts/mediaplayer_active.sh",
+		"format": "{}",
+		"tooltip": false,
+	},
+	"custom/mono-spacer": {
+		"format": " ",
+		"tooltip": false,
+	}
 }
