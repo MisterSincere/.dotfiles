@@ -41,7 +41,6 @@ require('mason-lspconfig').setup({
 		'html',
 		'phpactor',
 		'vtsls',
-		'volar',
 		'lua_ls',
 		'pylsp',
 		'twiggy_language_server'
