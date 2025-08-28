@@ -102,7 +102,6 @@ function M.project_view()
 end
 
 function M.project_search()
-	print(connections.is_connected())
 	if connections.is_connected() then
 		print("Choosing remote search")
 		remote_api.live_grep()
