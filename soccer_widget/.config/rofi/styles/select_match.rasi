@@ -62,7 +62,7 @@ element-text, element-icon {
 
 element normal,
 element alternate {
-	background-color: #00000099;
+	background-color: #000000bb;
 	text-color: #fff;
 }
 element selected {
