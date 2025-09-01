@@ -22,8 +22,7 @@ fi
 rofi_list=""
 match_ids=()
 while read -r entry; do
-    id=$(echo "$entry" | jq -r '.key')
-	match_ids+=($(echo "$row" | jq -r '.id'))
+	match_ids+=($(echo "$entry" | jq -r '.key'))
 
     status=$(echo "$entry" | jq -r '.value.status')
     time=$(echo "$entry" | jq -r '.value.time')
