@@ -39,7 +39,7 @@ rofi_list="${rofi_list#'|'}"
 
 sel="$(echo -e ${rofi_list} | rofi -sep '|' -format 'i' -dmenu -markup-rows -theme "${rdir}/styles/select_match.rasi")"
 
-if [[ "${sel}" != "-1" ]]; then
+if [[ "${sel}" != "-1" && -n "${sel}" ]]; then
 	echo ${match_ids[${sel}]} > $match_file
 else
 	echo "" > $match_file
