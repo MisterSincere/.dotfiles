@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=DisneyPlus
+Comment=Disney Plus Video Streaming
+Exec=firefox --kiosk --new-window https://disneyplus.com
+Icon=disney

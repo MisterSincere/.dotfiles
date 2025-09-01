@@ -1,0 +1,27 @@
+
+@define-color bar_bg transparent;
+
+@define-color ws_bg #111;
+@define-color ws_fg #eee;
+@define-color ws_hover_bg @ws_active_bg;
+@define-color ws_active_bg #333;
+@define-color ws_active_fg #fff;
+@define-color ws_splash @right_mods_bg;
+
+@define-color left_mods_bg @right_mods_bg;
+@define-color left_mods_fg #fff;
+@define-color left_mods_hover_bg @right_mods_hover_bg;
+@define-color left_mods_hover_fg @left_mods_fg;
+
+@define-color media_bg #66cc99;
+@define-color media_fg #2a5c45;
+
+@define-color timer_bg #890131;
+@define-color timer_fg @right_mods_fg;
+
+@define-color soccer_bg @right_mods_bg;
+@define-color soccer_fg #fc0;
+
+@define-color right_mods_bg rgba(20, 95, 150, 1.0);
+@define-color right_mods_fg #fff;
+@define-color right_mods_hover_bg rgba(51, 204, 255, 0.6);

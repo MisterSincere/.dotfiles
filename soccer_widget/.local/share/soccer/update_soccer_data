@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "hello $(date)" >> $HOME/.local/state/soccer/ger2_data
+sleep 10

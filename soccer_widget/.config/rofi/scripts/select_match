@@ -1,0 +1,45 @@
+#!/bin/bash
+rdir="$HOME/.config/rofi/"
+sdir="$HOME/.local/state/soccer"
+match_file="${sdir}/match"
+data_file="/tmp/espn_fetch_ger2"
+
+declare -A status_texts
+status_texts["STATUS_FIRST_HALF"]=" "
+status_texts["STATUS_SECOND_HALF"]=" "
+status_texts["STATUS_FULL_TIME"]="󰃯 "
+status_texts["STATUS_SCHEDULED"]="󰃰 "
+status_texts["STATUS_HALFTIME"]=" "
+
+mkdir -p ${sdir}
+[ ! -f "$match_file" ] && touch $match_file
+
+if test `find "${data_file}" -mmin +1`; then
+	wget -qO- http://site.api.espn.com/apis/site/v2/sports/soccer/ger.2/scoreboard > $data_file
+fi
+
+rofi_list=""
+match_ids=()
+while read -r row; do
+	team1_score=$(echo "$row" | jq -r '.competitions[0].competitors[0].score')
+	team1_name=$(echo "$row" | jq -r '.competitions[0].competitors[0].team.shortDisplayName')
+	team2_score=$(echo "$row" | jq -r '.competitions[0].competitors[1].score')
+	team2_name=$(echo "$row" | jq -r '.competitions[0].competitors[1].team.shortDisplayName')
+	time=$(echo "$row" | jq -r '.competitions[0].status.displayClock')
+
+	status_name=$(echo "$row" | jq -r '.competitions[0].status.type.name')
+	entry_name="${status_texts["${status_name}"]}\t${time}\t${team1_score} : ${team2_score}\t${team1_name} - ${team2_name}"
+
+	match_ids+=($(echo "$row" | jq -r '.id'))
+	rofi_list+="|${entry_name}"
+done < <(jq -c '.events[]' $data_file)
+
+rofi_list="${rofi_list#'|'}"
+
+sel="$(echo -e ${rofi_list} | rofi -sep '|' -format 'i' -dmenu -markup-rows -theme "${rdir}/styles/select_match.rasi")"
+
+if [[ "${sel}" != "-1" ]]; then
+	echo ${match_ids[${sel}]} > $match_file
+else
+	echo "" > $match_file
+fi

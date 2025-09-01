@@ -1,0 +1,10 @@
+@import "dialog.rasi"
+
+window {
+  width: 	12%;
+  height: 70px;
+}
+
+entry {
+  placeholder:      "Give destination if ya want...";
+}

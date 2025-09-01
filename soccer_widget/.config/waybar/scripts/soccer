@@ -1,0 +1,38 @@
+#!/bin/bash
+path="$HOME/.local/state/soccer"
+match_file="${path}/match"
+data_file="/tmp/espn_fetch_ger2"
+
+mkdir -p ${path}
+[ ! -f "${match_file}" ] && touch $match_file
+
+match_selected() {
+	grep -q '[^[:space:]]' < "${match_file}" && return 0
+	return 1
+}
+
+print_match_info() {
+	! match_selected && return 1
+
+	match_id=$(cat $match_file)
+
+	while read -r row; do
+		id=$(echo "$row" | jq -r '.id')
+		if [ "${id}" == "${match_id}" ]; then
+			team1_score=$(echo "$row" | jq -r '.competitions[0].competitors[0].score')
+			team1_abbr=$(echo "$row" | jq -r '.competitions[0].competitors[0].team.abbreviation')
+			team2_score=$(echo "$row" | jq -r '.competitions[0].competitors[1].score')
+			team2_abbr=$(echo "$row" | jq -r '.competitions[0].competitors[1].team.abbreviation')
+			time=$(echo "$row" | jq -r '.competitions[0].status.displayClock')
+			echo "${time} | ${team1_abbr} ${team1_score} : ${team2_score} ${team2_abbr}"
+			exit 0
+		fi
+	done < <(cat $data_file | jq -c '.events[]')
+}
+
+if [[ $1 == "is_active" ]]; then
+	match_selected
+else
+	print_match_info
+fi
+exit $?

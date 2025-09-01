@@ -1,0 +1,9 @@
+@import "dialog.rasi"
+
+entry {
+  placeholder:    "Enter time...";
+}
+
+window {
+  height: 70px;
+}

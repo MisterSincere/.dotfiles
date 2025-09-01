@@ -1,0 +1,10 @@
+--recurse=yes
+--exclude=lib/*
+--exclude=*build*/*
+--exclude=compile_commands.json
+--exclude=neovim.json
+--exclude=.idea/*
+--exclude=.git/*
+--exclude=doxygen/*
+--exclude=*/doxygen/*
+--exclude=*.md

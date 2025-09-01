@@ -1,0 +1,71 @@
+configuration {
+	font: "Ubuntu Light 16";
+}
+
+* {
+	background-color: #00000000;
+}
+
+window {
+	transparency: "real";
+	width: 35%;
+	padding: 0;
+	border-radius: 0;
+	border: 0;
+	location: center;
+	x-offset: 0;
+	y-offset: 0;
+}
+
+
+entry {
+	expand: true;
+	placeholder: "Select match to track or q to stop tracking";
+}
+
+inputbar {
+	children: [entry];
+	expand: false;
+	background-color: #fff;
+	text-color: #000;
+	padding: 0.5%;
+	margin: 0;
+	border-radius: 5px;
+	border: 2px;
+	border-color: #fc0;
+}
+
+listview {
+	lines: 3;
+	columns: 1;
+	spacing: 0;
+	padding: 0;
+	margin: 1% 0% 0% 0%;
+	border: 2px;
+	border-color: #fc0;
+	border-radius: 5px;
+	cycle: true;
+	dynamic: true;
+	layout: vertical;
+}
+
+mainbox {
+	children: [inputbar, listview];
+	background-color: #00000000;
+}
+
+element-text, element-icon {
+	background-color: inherit;
+	text-color: inherit;
+	padding: 8px 0px 8px 15px;
+}
+
+element normal,
+element alternate {
+	background-color: #00000099;
+	text-color: #fff;
+}
+element selected {
+	background-color: #145f96;
+	text-color: #fff;
+}

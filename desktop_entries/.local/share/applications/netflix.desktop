@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Netflix
+Comment=Netflix Video Streaming
+Exec=firefox --kiosk --new-window https://netflix.com
+Icon=netflix

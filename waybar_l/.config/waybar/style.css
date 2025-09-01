@@ -1,0 +1,220 @@
+@import url("colors.css");
+
+* {
+	font-family: FontAwesome, Ubuntu Light, sans-serif;
+	font-size: 16px;
+	transition-property: background-color, box-shadow;
+	transition-duration: .3s;
+	border: none;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+}
+#waybar {
+	background-color: @bar_bg;
+}
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+	background: inherit;
+}
+
+/* LEFT */
+#custom-power,
+#custom-quit,
+#custom-lock,
+#custom-reboot {
+	padding: 0px 5px 0px 10px;
+	background-color: @left_mods_bg;
+	color: @left_mods_fg;
+}
+#custom-power:hover,
+#custom-quit:hover,
+#custom-lock:hover,
+#custom-reboot:hover {
+	background-color: @left_mods_hover_bg;
+	color: @left_mods_hover_fg;
+}
+#custom-media {
+	background-color: @media_bg;
+	padding-left: 5px;
+	padding-right: 0;
+	color: @media_fg;
+	min-width: 100px;
+}
+
+/* CENTER */
+#workspaces button {
+	padding: 0 7px;
+	margin: 0;
+	background-color: @ws_bg;
+	color: @ws_fg;
+	min-width: 20px;
+	box-shadow: inset 0px 3px @ws_splash;
+}
+#workspaces button:hover {
+	background-color: @ws_active_bg;
+	box-shadow: inset 0px 3px @ws_active_fg;
+}
+#workspaces button.active {
+	background-color: @ws_active_bg;
+	box-shadow: inset 0px 3px @ws_active_fg;
+}
+#workspaces button.urgent {
+	background-color: #eb4d4b;
+}
+#submap {
+	background-color: @ws_active_bg;
+	box-shadow: inset 0 3px @ws_active_fg;
+}
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+	margin-left: 0px;
+}
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+	margin-right: 0;
+}
+
+/* RIGHT SIDE */
+#custom-timer,
+#custom-soccer,
+#pulseaudio,
+#power-profiles-daemon,
+#battery,
+#cpu,
+#temperature,
+#memory,
+#custom-hardware-icon,
+#tray,
+#clock {
+	background-color: @right_mods_bg;
+	padding: 0 6px;
+	color: @right_mods_fg;
+}
+#custom-timer {
+	background-color: @timer_bg;
+	color: @timer_fg;
+	padding-right: 4px;
+}
+#custom-soccer {
+	background-color: @soccer_bg;
+	color: @soccer_fg;
+	padding-right: 4px;
+}
+#custom-hardware-icon {
+	padding-left: 8px;
+	padding-right: 6px;
+}
+#clock {
+	padding-right: 8px;
+}
+#temperature {
+	padding-left: 3px;
+}
+#power-profiles-daemon {
+	min-width: 20px;
+	padding-right: 8px;
+}
+#cpu {
+	padding-right: 3px;
+}
+#temperature.critical {
+	background-color: #eb4d4b;
+}
+#pulseaudio.muted {
+	background-color: #90b1b1;
+	color: #2a5c45;
+}
+#tray {
+	padding-right: 10px;
+	padding-left: 8px;
+}
+#tray > .passive {
+	-gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+	-gtk-icon-effect: highlight;
+	background-color: #eb4d4b;
+}
+#power-profiles-daemon:hover,
+#pulseaudio:hover,
+#custom-hardware-icon:hover,
+#clock:hover {
+	background-color: @right_mods_hover_bg;
+}
+
+/* needed ?!? */
+label:focus {
+	background-color: #000000;
+}
+
+#custom-media-end-left,
+#custom-media-end-right,
+#custom-std-end-left,
+#custom-std-end-right,
+#custom-left-end-right,
+#custom-right-end-right,
+#custom-right-end-left,
+#custom-soccer-right-right,
+#custom-soccer-right-left,
+#custom-timer-right-end,
+#custom-timer-right-left {
+	font-family: Nerd Font;
+	font-size: 24px;
+	padding: 0;
+	background-color: @bar_bg;
+}
+#custom-std-end-left,
+#custom-std-end-right {
+	color: @ws_bg;
+	font-size: 21px;
+	border-top: 3px solid @ws_splash;
+}
+#custom-left-end-right {
+	color: @left_mods_bg;
+	font-size: 25px;
+	box-shadow: inset 0px 1px @left_mods_bg;
+}
+#custom-right-end-left,
+#custom-right-end-right {
+	color: @right_mods_bg;
+}
+#custom-soccer-right-left {
+	box-shadow: inset 0px 1px @soccer_bg;
+	color: @soccer_bg;
+}
+#custom-soccer-right-right {
+	color: @soccer_bg;
+	box-shadow: inset 0px -2px @soccer_bg;
+}
+#custom-timer-right-left {
+	box-shadow: inset 0px 1px @timer_bg;
+	color: @timer_bg;
+}
+#custom-timer-right-end {
+	color: @timer_bg;
+	box-shadow: inset 0px -2px @timer_bg;
+}
+#custom-right-end-left {
+	box-shadow: inset 0px 1px @right_mods_bg;
+}
+#custom-right-end-right {
+	box-shadow: inset 0px -2px @right_mods_bg;
+}
+#custom-media-end-left,
+#custom-media-end-right {
+	color: @media_bg;
+}
+#custom-media-end-left {
+	box-shadow: inset 0px -2px @media_bg;
+}
+#custom-media-end-right {
+	box-shadow: inset 0px 1.5px @media_bg;
+}
+
+#custom-mono-spacer {
+	min-width: 6px;
+	padding: 0;
+	background-color: @ws_bg;
+	box-shadow: inset 0px 3px @right_mods_bg;
+}

@@ -1,0 +1,2 @@
+--exclude-exception=lib/vkrenderer/CMakeLists.txt
+--exclude-exception=lib/vkrenderer/src/*

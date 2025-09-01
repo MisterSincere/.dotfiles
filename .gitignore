@@ -1,0 +1,13 @@
+vim/.vim/.netrwhist
+vim/.vim/plugged/
+vim/.vim/undodir/
+vim/.vim/doc/
+vim/.vim/bin/
+vim/.vim/plugin/
+vim/.vim/.VimballRecord
+
+nvim/.config/nvim/plugged/
+
+tmux/.config/tmux/plugins/
+
+tags

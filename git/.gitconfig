@@ -1,0 +1,17 @@
+[alias]
+	st = status
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
+[user]
+	name = Nikkel Heesen
+	email = heesen.nikkel@madnessstudio.de
+[core]
+	editor = nvim
+[advice]
+	detachedHead = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false

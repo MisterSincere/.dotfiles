@@ -1,0 +1,110 @@
+" plugins
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
+"Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'elkowar/yuck.vim'
+Plug 'vim-utils/vim-man'
+Plug 'dag/vim-fish'
+Plug 'zivyangll/git-blame.vim'
+"Plug 'ycm-core/YouCompleteMe'
+"Plug 'xavierd/clang_complete'
+Plug 'mbbill/undotree'
+call plug#end()
+
+" allow rg to detect root of git
+if executable('rg')
+  let g:rg_derive_root='true'
+endif
+
+" thinks to ignore in search and no caching
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_use_caching = 0
+
+" key to enter command mode
+let mapleader = " "
+
+" how to open files, no extra information, winsize about 25%
+"let g:netrw_browse_split=2
+"let g:netrw_banner = 0
+"let g:netrw_winsize = 25
+
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+" coloring
+syntax on 
+colorscheme gruvbox
+set background=dark
+hi! Normal guibg=NONE gui=NONE ctermbg=NONE cterm=NONE
+
+" options
+set noerrorbells
+set encoding=utf-8
+set tabstop=2 softtabstop=2
+set shiftwidth=2
+set expandtab
+set nu
+set autoindent
+"set termguicolors
+set splitright
+set splitbelow
+set noswapfile
+set laststatus=2
+set linebreak
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set scrolloff=5
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set statusline=%{FugitiveStatusline()}
+set statusline+=\ %f%m
+set statusline+=%=
+set statusline+=%l/%L
+set statusline+=\ %y
+"set mouse=a
+
+" mappings
+nmap <F2> :vsplit ~/.vim/vimrc<CR>
+nmap <F5> :source ~/.vim/vimrc<CR>
+
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
+
+nnoremap <leader>n :nohlsearch<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>s :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v<bar> :wincmd h<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>ps :Rg<SPACE>
+nnoremap <silent> <leader>+ :vertical resize +5<CR>
+nnoremap <silent> <leader>- :vertical resize -5<CR>
+
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+"nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+"nnoremap <silent> <leader>gt :ALEGoToDefinition<CR>
+
+nnoremap <leader>b :<C-u>call gitblame#echo()<CR>
+
+imap jk <esc>
+
+autocmd FileType python map <buffer> <F9> :w<CR>:exec  '!python' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
+
+autocmd FileType cpp map <buffer> <F9> :w<CR>:exec '! cd build; ninja tracey_ex3_2; cd -'<CR>
+autocmd FileType cpp map <buffer> <F10> :w<CR>:exec '! cd build; ./tracey_ex3_2; cd -'<CR>
+
+" jump to last position after reopening
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
