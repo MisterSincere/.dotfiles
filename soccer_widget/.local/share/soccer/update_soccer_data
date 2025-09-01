@@ -1,4 +1,55 @@
 #!/bin/bash
+data_file="${HOME}/.local/state/soccer/ger2_data"
+urgency=0
 
-echo "hello $(date)" >> $HOME/.local/state/soccer/ger2_data
-sleep 10
+parse_event () {
+	id=$(echo "$row" | jq '.id')
+	name=$(echo "$row" | jq '.name')
+	short_name=$(echo "$row" | jq '.shortName')
+	display_time=$(echo "$row" | jq '.competitions[0].status.displayClock');
+	status=$(echo "$row" | jq -r 'map({ (.id): { "status": .competitions[0].status.type.name } })')
+
+}
+
+parse_data () {
+	parsed=$(echo $1 | jq '.events | map({
+		(.id): {
+			name: .name,
+			shortName: .shortName,
+			status: .competitions[0].status.type.name,
+			time: .competitions[0].status.displayClock,
+			competitors: [
+			{
+				name: .competitions[0].competitors[0].team.displayName,
+				shortName: .competitions[0].competitors[0].team.shortDisplayName,
+				abbrName: .competitions[0].competitors[0].team.abbreviation,
+				score: .competitions[0].competitors[0].score,
+			},
+			{
+				name: .competitions[0].competitors[1].team.displayName,
+				shortName: .competitions[0].competitors[1].team.shortDisplayName,
+				abbrName: .competitions[0].competitors[1].team.abbreviation,
+				score: .competitions[0].competitors[1].score,
+			}
+		]
+	}}) | add')
+	echo "${parsed}" | jq '.' > $data_file
+}
+
+refresh () {
+	response=$(wget -qO- http://site.api.espn.com/apis/site/v2/sports/soccer/ger.2/scoreboard)
+	parse_data "${response}"
+}
+
+timed_refresh () {
+	if test `find "${data_file}" -mmin +5`; then
+		refresh
+	fi
+}
+
+
+if [[ $1 == "force-refresh" ]]; then
+	refresh
+else
+	timed_refresh
+fi

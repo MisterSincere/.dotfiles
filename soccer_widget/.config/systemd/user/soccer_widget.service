@@ -3,9 +3,9 @@ Description=Service running periodically to update data for the soccer widget
 After=network.target
 
 [Service]
-Type=exec
-WorkingDirectory=$HOME/.local/share/soccer/
-ExecStart=$HOME/.local/share/soccer/update_soccer_data
+Type=oneshot
+WorkingDirectory=%h/.local/share/soccer/
+ExecStart=/bin/bash %h/.local/share/soccer/update_soccer_data
 
 [Install]
 WantedBy=default.target

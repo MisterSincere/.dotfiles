@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer for soccer widget data update script
+
+[Timer]
+OnUnitActiveSec=30s
+OnBootSec=30s
+
+[Install]
+WantedBy=timers.target
