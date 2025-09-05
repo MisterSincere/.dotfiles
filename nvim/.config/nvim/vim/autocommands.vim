@@ -10,7 +10,7 @@ augroup netrw_keybinds
 		autocmd filetype netrw call Add_netrw_keybinds()
 augroup END
 function! Add_netrw_keybinds()
-		noremap <buffer> <F1> <cmd>:lua require('utils.reload').reload()<CR>
+		noremap <buffer> <F1> <cmd>:lua require('utils.config_browsing').reload()<CR>
 endfunction
 
 " jump to last position after reopening

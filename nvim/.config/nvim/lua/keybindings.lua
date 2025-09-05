@@ -61,7 +61,7 @@ nmap('<leader>-', ':vertical resize -5<CR>', {silent=true})
 nmap('<leader>gs', vim.cmd.Git)
 
 -- show nvim configs / reload configs
-nmap('<F1>', '<cmd>:lua require("utils.reload").reload()<CR>', {silent=true,noremap=false})
+nmap('<F1>', '<cmd>:lua require("utils.config_browsing").reload()<CR>', {silent=true,noremap=false})
 
 -- file browsing (telescope)
 local telescope_builtin = require('telescope.builtin')
