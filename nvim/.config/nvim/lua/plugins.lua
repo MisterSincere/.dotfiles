@@ -47,6 +47,9 @@ Plug('nvim-lua/plenary.nvim')
 -- keybinding <leader>u
 Plug('mbbill/undotree')
 
+Plug('nvim-tree/nvim-tree.lua')
+Plug('nvim-tree/nvim-web-devicons')
+
 -- LSP Support
 Plug('neovim/nvim-lspconfig')
 Plug('williamboman/mason.nvim')

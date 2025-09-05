@@ -34,7 +34,7 @@ nmap('<leader>gh', ':diffget //3<CR>')
 nmap('<leader>gu', ':diffget //2<CR>')
 nmap('<leader>gs', ':G<CR>')
 
-nmap('<leader>e', ':Explore<CR>')
+nmap('<leader>e', ':NvimTreeToggle<CR>')
 
 -- keypress do disable search result highlighting
 nmap('<leader>n', ':nohlsearch<CR>', {silent=true})

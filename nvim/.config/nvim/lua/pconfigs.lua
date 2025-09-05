@@ -1,3 +1,5 @@
+local vim = vim
+
 -- allow rg to detect root of git
 local executable = vim.fn['executable']
 if executable('rg') then
@@ -205,3 +207,18 @@ remote_sshfs.setup{
 --require('telescope').load_extension('remote-sshfs')
 
 require('nvim-highlight-colors').setup({})
+
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
