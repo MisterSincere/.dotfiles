@@ -1,0 +1,10 @@
+#!/bin/bash
+msg_tag="brightnessbar"
+current_brightness=$(brightnessctl g)
+max_brightness=$(brightnessctl m)
+brightness=$(( ($current_brightness*100) / $max_brightness ))
+echo $current_brightness
+echo $max_brightness
+echo $brightness
+
+dunstify -a "change_brightness" -u low -h string:x-dunst-stack-tag:$msg_tag -h int:value:"$brightness" "Brightness: ${brightness}%"
