@@ -29,6 +29,7 @@ function M.project_view()
 			'-e', '.py',
 			'-e', '.comp',
 			'-e', '.conf',
+			'-e', '.typ',
 			'-e', '.yaml',
 			'-e', '.yml',
 			'-e', '.glsl',

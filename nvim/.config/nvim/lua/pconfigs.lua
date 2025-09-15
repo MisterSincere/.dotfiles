@@ -222,3 +222,11 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
+require("typst-preview").setup({
+	debug = true,
+	port = 33465,
+	dependencies_bin = {
+		['tinymist'] = 'tinymist',
+	},
+})
