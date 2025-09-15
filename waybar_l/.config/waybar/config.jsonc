@@ -141,6 +141,7 @@
 	},
 	"clock": {
 		// "timezone": "America/New_York",
+		"format": "{:%d |%H:%M}",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
 		"on-click": "firefox --new-tab \"https://calendar.proton.me\"",
 	},
