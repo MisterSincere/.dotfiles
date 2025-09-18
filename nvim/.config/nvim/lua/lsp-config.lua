@@ -1,16 +1,5 @@
-local pylsp_config = {
-	plugins = {
-		pycodestyle = {
-			-- E265: block comment should start with '# '
-			-- E231: missing whitespace after ','
-			-- E501: line too long
-			ignore = {'E265', 'E231', 'E501'},
-		}
-	}
-}
-
-local lspconfig = require('lspconfig')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local util = require('lspconfig.util')
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	desc = 'LSP actions',
@@ -30,7 +19,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local default_setup = function(server)
-	lspconfig[server].setup({
+	vim.lsp.config[server].setup({
 		capabilities = lsp_capabilities,
 	})
 end
@@ -47,17 +36,7 @@ require('mason-lspconfig').setup({
 	},
 	handlers = {
 		default_setup,
-		pylsp = function()
-			lspconfig.pylsp.setup({
-				settings = {
-					pylsp = pylsp_config
-				}
-			})
-		end,
 	},
-})
-lspconfig.html.setup({
-	filetypes = { "twig", "html", "templ" }
 })
 local vue_plugin = {
 	name = '@vue/typescript-plugin',
@@ -66,6 +45,10 @@ local vue_plugin = {
 	configNamespace = 'typescript',
 }
 local vtsls_config = {
+	root_dir = function(fname)
+        return util.root_pattern('tsconfig.json', 'package.json', '.git')(fname)
+            or vim.fn.getcwd()
+    end,
 	settings = {
 		vtsls = {
 			tsserver = {
@@ -78,10 +61,30 @@ local vtsls_config = {
 	filetypes = { 'typescript', 'javascript', 'vue' }
 }
 local vue_ls_config = {}
+local pylsp_config = {
+	plugins = {
+		pycodestyle = {
+			-- E265: block comment should start with '# '
+			-- E231: missing whitespace after ','
+			-- E501: line too long
+			ignore = {'E265', 'E231', 'E501'},
+		}
+	}
+}
+local html_config = {
+	filetypes = { "twig", "html", "templ" }
+}
 
+
+vim.lsp.config('html', html_config)
+vim.lsp.config('pylsp', pylsp_config)
 vim.lsp.config('vtsls', vtsls_config)
 vim.lsp.config('vue_ls', vue_ls_config)
-vim.lsp.enable({'vtsls', 'vue_ls'})
+vim.lsp.enable('vtsls')
+vim.lsp.enable('vue_ls')
+vim.lsp.enable('phpactor')
+vim.lsp.enable('html')
+vim.lsp.enable('pylsp')
 
 
 local cmp = require('cmp')
