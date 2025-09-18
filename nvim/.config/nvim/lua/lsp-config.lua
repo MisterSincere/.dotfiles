@@ -30,6 +30,7 @@ require('mason-lspconfig').setup({
 		'html',
 		'phpactor',
 		'vtsls',
+		'tinymist',
 		'lua_ls',
 		'pylsp',
 		'twiggy_language_server'
@@ -74,17 +75,42 @@ local pylsp_config = {
 local html_config = {
 	filetypes = { "twig", "html", "templ" }
 }
+local tinymist_config = {
+	cmd = { "tinymist" },
+	filetypes = { "typst" },
+	settings = {
+		formatterMode = "typstyle",
+	},
+	on_attach = function(client, bufnr)
+		vim.keymap.set("n", "<leader>tp", function()
+			client:exec_cmd({
+				title = "pin",
+				command = "tinymist.pinMain",
+				arguments = { vim.api.nvim_buf_get_name(0) },
+			}, { bufnr = bufnr })
+		end, { desc = "[T]inymist [P]in", noremap = true})
+		vim.keymap.set("n", "<leader>tu", function()
+			client:exec_cmd({
+				title = "unpin",
+				command = "tinymist.pinMain",
+				arguments = { vim.v.null },
+			}, { bufnr = bufnr })
+		end, { desc = "[T]inymist [U]npin", noremap = true })
+	end
+}
 
 
 vim.lsp.config('html', html_config)
 vim.lsp.config('pylsp', pylsp_config)
 vim.lsp.config('vtsls', vtsls_config)
 vim.lsp.config('vue_ls', vue_ls_config)
+vim.lsp.config('tinymist', tinymist_config)
 vim.lsp.enable('vtsls')
 vim.lsp.enable('vue_ls')
 vim.lsp.enable('phpactor')
 vim.lsp.enable('html')
 vim.lsp.enable('pylsp')
+vim.lsp.enable('tinymist')
 
 
 local cmp = require('cmp')
