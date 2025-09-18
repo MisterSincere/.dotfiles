@@ -31,6 +31,7 @@ function M.project_view()
 			'-e', '.conf',
 			'-e', '.typ',
 			'-e', '.yaml',
+			'-e', '.bib',
 			'-e', '.yml',
 			'-e', '.glsl',
 			'-e', '.vert',
