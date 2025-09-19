@@ -42,6 +42,7 @@ function M.project_view()
 			'-e', '.js',
 			'-e', '.ts',
 			'-e', '.css',
+			'-e', '.scss',
 			'-e', '.yaml',
 			'-e', '.gitignore',
 			'-e', '.rs',

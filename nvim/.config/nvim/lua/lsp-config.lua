@@ -57,7 +57,7 @@ require('mason-lspconfig').setup({
 	},
 })
 lspconfig.html.setup({
-	filetypes = { "twig", "html", "templ" }
+	filetypes = { "twig", "html", "templ", "jinja" }
 })
 local vue_plugin = {
 	name = '@vue/typescript-plugin',
