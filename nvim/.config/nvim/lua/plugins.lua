@@ -41,6 +41,9 @@ Plug('tpope/vim-obsession')
 Plug('nvim-telescope/telescope.nvim')
 Plug('nvim-telescope/telescope-ui-select.nvim')
 
+-- typst
+Plug('chomosuke/typst-preview.nvim', {tag = 'v1.*'})
+
 -- tools (among others needed by neovim cmake)
 Plug('nvim-lua/plenary.nvim')
 

@@ -46,6 +46,9 @@ nmap('<leader>r', ':redo<CR>')
 nmap('gn', ':bn<CR>')
 nmap('gp', ':bp<CR>')
 
+-- spell checker on off (testing if this suffices)
+nmap('<leader>cs', ':setlocal spell spelllang=en_us<CR>')
+
 -- save and close commands with leader
 nmap('<leader>s', ':w<CR>')
 nmap('<leader>q', ':q<CR>')
