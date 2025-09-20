@@ -35,9 +35,6 @@ require("lazy").setup({
     install = {
 	colorscheme = { "dark_plus" },
     },
-    init = function ()
-	require("config.coloring")
-    end
 })
 
 -- statusline
