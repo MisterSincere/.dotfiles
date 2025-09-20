@@ -16,6 +16,7 @@ end
 return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
+    lazy = false,
     dependencies = { 
 	"nvim-lua/plenary.nvim",
 	"nvim-telescope/telescope-ui-select.nvim",
@@ -24,24 +25,22 @@ return {
 	    init = gutentags_init,
 	}
     },
-    opts = {
-	defaults = {
-	    mappings = {
-		i = {
-		    ["<F1>"] = require("telescope.actions").close,
-		    ["<ESC>"] = require("telescope.actions").close,
-		},
-	    },
-	},
-    },
     config = function(lazyPlugin, opts) 
 	local tel = require("telescope")
-	tel.setup(opts)
+	local map = require("utils.keymap")
+	tel.setup({
+	    defaults = {
+		mappings = {
+		    i = {
+			["<F1>"] = require("telescope.actions").close,
+			["<ESC>"] = require("telescope.actions").close,
+		    },
+		},
+	    },
+	})
 	tel.load_extension("ui-select")
+	map.n("<leader><leader>", require("telescope.builtin").tags)
+	map.n("<leader>pv", require("utils.file_browsing").project_view)
+	map.n("<leader>ps", require("utils.file_browsing").project_search)
     end,
-    keys = {
-	{ "<leader><leader>", require("telescope.builtin").tags },
-	{ "<leader>pv", require("utils.file_browsing").project_view },
-	{ "<leader>ps", require("utils.file_browsing").project_search },
-    },
 }
