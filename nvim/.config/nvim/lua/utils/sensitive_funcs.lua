@@ -22,6 +22,8 @@ function M.conditional_breakpoint()
 	if (lang_sel.is_c()) then
 		local cond = vim.fn.input('Breakpoint condition: ')
 		dap.set_breakpoint(cond)
+	else
+		print("Conditional breakpoint not supported for current language")
 	end
 end
 

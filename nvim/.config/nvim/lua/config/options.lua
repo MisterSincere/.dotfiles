@@ -1,9 +1,9 @@
--- options.lua
+-- config/options.lua
 
 -- disable annoying ring bell on "error"
 vim.opt.errorbells = false
 
--- used string encoding
+-- use string encoding
 vim.opt.encoding = 'utf-8'
 
 -- amount of spaces tab acts like it "skips"
@@ -70,9 +70,6 @@ vim.opt.smartcase = true
 -- automatically expand tabs to spaces
 vim.opt.expandtab = false
 
--- number of spaces tab expands to if expandtab is true
-vim.opt.tabstop = 4
-
 -- display a vertical column at 80 characters
 --vim.opt.colorcolumn = '100'
 
@@ -88,7 +85,7 @@ vim.opt.mouse = 'nv'
 -- yank, delete, change etc. to and from the system clipboard
 vim.opt.clipboard = 'unnamedplus'
 
--- search for tags file towards root if it not in cur dir
+-- search for tags file towards root if not in cur dir
 vim.opt.tags = './tags,tags;$HOME'
 
 -- always show leftmost status column (lsp signs etc.)

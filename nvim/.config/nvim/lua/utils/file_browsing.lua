@@ -3,8 +3,6 @@
 local M = {}
 
 local telescope_builtin = require('telescope.builtin')
-local connections = require('remote-sshfs.connections')
-local remote_api = require('remote-sshfs.api')
 
 function M.project_view()
 	local prompt_title = vim.fn.expand('%:t:r')
@@ -19,6 +17,8 @@ function M.project_view()
 			'--strip-cwd-prefix',
 			'-e', '.h',
 			'-e', '.cpp',
+			'-e', '.lua',
+			'-e', '.vim',
 			'-e', '.qml',
 			'-e', '.desktop',
 			'-e', '.cu',
@@ -94,24 +94,11 @@ function M.project_view()
 	}
 
 
-	print(connections.is_connected())
-	if connections.is_connected() then
-		print("Choosing remote browsing")
-		remote_api.find_files()
-	else
-		telescope_builtin.find_files(opts)
-		print("Choosing local browsing")
-	end
+	telescope_builtin.find_files(opts)
 end
 
 function M.project_search()
-	if connections.is_connected() then
-		print("Choosing remote search")
-		remote_api.live_grep()
-	else
-		telescope_builtin.grep_string({ search = vim.fn.input("Grep > ") });
-		print("Choosing local search")
-	end
+	telescope_builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end
 
 return M

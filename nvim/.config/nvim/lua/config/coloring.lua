@@ -1,4 +1,4 @@
--- coloring.lua
+-- config/coloring.lua
 
 vim.opt.background = 'dark'
 vim.cmd.colorscheme("dark_plus")
