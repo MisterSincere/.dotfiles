@@ -1,4 +1,5 @@
 -- config/lsp.lua
+
 local util = require('lspconfig.util')
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -17,36 +18,63 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
-local default_setup = function(server)
-    vim.lsp.config[server].setup({
-	capabilities = lsp_capabilities,
-    })
-end
-
 local vue_plugin = {
     name = '@vue/typescript-plugin',
     location = vim.fn.expand("$MASON/packages/vue-language-server") .. '/node_modules/@vue/language-server',
     languages = { 'vue' },
     configNamespace = 'typescript',
 }
-local vtsls_config = {
-    root_dir = function(fname)
-	return util.root_pattern('tsconfig.json', 'package.json', '.git')(fname)
-	or vim.fn.getcwd()
-    end,
-    settings = {
-	vtsls = {
-	    tsserver = {
-		globalPlugins = {
-		    vue_plugin,
-		},
-	    },
+
+vim.lsp.config('*', { capabilities = require('cmp_nvim_lsp').default_capabilities() })
+
+vim.lsp.config("ts_ls", {
+    init_options = {
+	plugins = {
+	    vue_plugin,
 	},
     },
-    filetypes = { 'typescript', 'javascript', 'vue' }
-}
-local vue_ls_config = {}
-local pylsp_config = {
+    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "vue" },
+})
+
+vim.lsp.config("vue_ls", {
+    on_init = function(client)
+	client.handlers['tsserver/request'] = function(_, result, context)
+	    local ts_clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'ts_ls' })
+	    local vtsls_clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'vtsls' })
+	    local clients = {}
+
+	    vim.list_extend(clients, ts_clients)
+	    vim.list_extend(clients, vtsls_clients)
+
+	    if #clients == 0 then
+		vim.notify('Could not find `vtsls` or `ts_ls` lsp client, `vue_ls` would not work without it.', vim.log.levels.ERROR)
+		return
+	    end
+	    local ts_client = clients[1]
+
+	    local param = unpack(result)
+	    local id, command, payload = unpack(param)
+	    ts_client:exec_cmd({
+		title = 'vue_request_forward', -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+		command = 'typescript.tsserverRequest',
+		arguments = {
+		    command,
+		    payload,
+		},
+	    }, { bufnr = context.bufnr }, function(_, r)
+		local response = r and r.body
+		-- TODO: handle error or response nil here, e.g. logging
+		-- NOTE: Do NOT return if there's an error or no response, just return nil back to the vue_ls to prevent memory leak
+		local response_data = { { id, response } }
+
+		---@diagnostic disable-next-line: param-type-mismatch
+		client:notify('tsserver/response', response_data)
+	    end)
+	end
+    end,
+})
+
+vim.lsp.config("pylsp", {
     plugins = {
 	pycodestyle = {
 	    -- E265: block comment should start with '# '
@@ -55,11 +83,9 @@ local pylsp_config = {
 	    ignore = {'E265', 'E231', 'E501'},
 	}
     }
-}
-local html_config = {
-    filetypes = { "twig", "html", "templ", "jinja" }
-}
-local tinymist_config = {
+})
+
+vim.lsp.config("tinymist", {
     cmd = { "tinymist" },
     filetypes = { "typst" },
     settings = {
@@ -81,21 +107,13 @@ local tinymist_config = {
 	    }, { bufnr = bufnr })
 	end, { desc = "[T]inymist [U]npin", noremap = true })
     end
-}
+})
 
+vim.lsp.config("html", {
+    filetypes = { "twig", "html", "templ", "jinja" }
+})
 
-vim.lsp.config('html', html_config)
-vim.lsp.config('pylsp', pylsp_config)
-vim.lsp.config('vtsls', vtsls_config)
-vim.lsp.config('vue_ls', vue_ls_config)
-vim.lsp.config('tinymist', tinymist_config)
-vim.lsp.enable('vtsls')
-vim.lsp.enable('vue_ls')
-vim.lsp.enable('phpactor')
-vim.lsp.enable('html')
-vim.lsp.enable('pylsp')
-vim.lsp.enable('tinymist')
-
+vim.lsp.enable({ "ts_ls", "vue_ls", "phpactor", "html", "pylsp", "tinymist", "lua_ls", "twiggy_language_server", "stylelint" })
 
 vim.diagnostic.config({
     virtual_text = false,

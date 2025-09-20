@@ -5,17 +5,18 @@ return {
 	    ensure_installed = {
 		"html",
 		"phpactor",
-		"vtsls",
+		"ts_ls",
 		"tinymist",
 		"lua_ls",
 		"pylsp",
 		"twiggy_language_server",
 	    },
-	    automatic_enable = true,
+	    automatic_enable = false,
 	},
 	dependencies = {
 	    { "mason-org/mason.nvim", opts = {} },
 	    "neovim/nvim-lspconfig",
+	    "hrsh7th/cmp-nvim-lsp",
 	},
     },
     {
@@ -29,7 +30,7 @@ return {
     },
     {
 	"hrsh7th/nvim-cmp",
-	config = function() 
+	config = function()
 	    local cmp = require("cmp")
 	    cmp.setup({
 		sources = {
@@ -50,8 +51,5 @@ return {
 	dependencies = {
 	    "L3MON4D3/LuaSnip"
 	}
-    },
-    {
-	"hrsh7th/cmp-nvim-lsp",
     },
 }
