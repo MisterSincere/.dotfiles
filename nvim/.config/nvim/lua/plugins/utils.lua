@@ -53,6 +53,9 @@ return {
 	}
     },
 
+    -- nvim session recovery
+    { "tpope/vim-obsession" },
+
     -- formatting
     { "rhysd/vim-clang-format" },
     { "rust-lang/rust.vim" },
