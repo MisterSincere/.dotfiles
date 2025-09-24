@@ -17,7 +17,7 @@ return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     lazy = false,
-    dependencies = { 
+    dependencies = {
 	"nvim-lua/plenary.nvim",
 	"nvim-telescope/telescope-ui-select.nvim",
 	{
@@ -25,7 +25,7 @@ return {
 	    init = gutentags_init,
 	}
     },
-    config = function(lazyPlugin, opts) 
+    config = function(_, _)
 	local tel = require("telescope")
 	local map = require("utils.keymap")
 	tel.setup({
@@ -41,6 +41,8 @@ return {
 	tel.load_extension("ui-select")
 	map.n("<leader><leader>", require("telescope.builtin").tags)
 	map.n("<leader>pv", require("utils.file_browsing").project_view)
-	map.n("<leader>ps", require("utils.file_browsing").project_search)
+	map.n("<leader>ps", function()
+	    require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+	end)
     end,
 }
