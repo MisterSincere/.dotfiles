@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
 	vim.keymap.set(
 	    "n", "<F1>",
-	    function() require("utils.config_browsing").reload() end,
+	    function() require("utils.config_browsing").show_nvim_config_files() end,
 	    { buffer = true, noremap = true, silent = true }
 	)
     end,
