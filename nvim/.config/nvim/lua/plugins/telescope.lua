@@ -15,9 +15,12 @@ end
 
 return {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    --branch = "master",
+    -- this was the master commit that finally worked... dunno what's going on with them
+    -- having 0.1.8 an 16 months old state
+    commit = "b4da76be54691e854d3e0e02c36b0245f945c2c7",
     lazy = false,
-    dependencies = { 
+    dependencies = {
 	"nvim-lua/plenary.nvim",
 	"nvim-telescope/telescope-ui-select.nvim",
 	{
@@ -25,7 +28,7 @@ return {
 	    init = gutentags_init,
 	}
     },
-    config = function(lazyPlugin, opts) 
+    config = function(_, _)
 	local tel = require("telescope")
 	local map = require("utils.keymap")
 	tel.setup({

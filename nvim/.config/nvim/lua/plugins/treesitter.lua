@@ -1,21 +1,21 @@
+
+local languages = { "lua", "vim", "vimdoc", "javascript", "html", "python", "typescript", "c" }
+
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     lazy = false,
     build = ":TSUpdate",
     config = function ()
-	local configs = require("nvim-treesitter.configs")
-	configs.setup({
-	    modules = {},
-	    ensure_installed = {
-		"c", "lua", "vim", "vimdoc", "javascript", "html", "python", "typescript",
-	    },
-	    sync_install = false,
-	    auto_install = true,
-	    highlight = {
-		enable = true,
-	    },
-	    ignore_install = {},
+	local ts = require("nvim-treesitter")
+	ts.install(languages)
+
+	vim.api.nvim_create_autocmd("FileType", {
+	    group = vim.api.nvim_create_augroup("treesitter_start", {clear = true}),
+	    pattern = languages,
+	    callback = function(event)
+		vim.treesitter.start(event.buf, vim.bo[event.buf].filetype)
+	    end,
 	})
     end,
 }
