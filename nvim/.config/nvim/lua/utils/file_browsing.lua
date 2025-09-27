@@ -2,13 +2,12 @@
 
 local M = {}
 
-local telescope_builtin = require('telescope.builtin')
+local telescope_builtin = require("telescope.builtin")
+local pane = require("utils.pane_helpers")
 
 function M.project_view()
-    local prompt_title = vim.fn.expand('%:t:r')
-
     local opts = {
-	prompt_title = prompt_title,
+	prompt_title = vim.fn.expand("%:t:r"),
 	no_ignore = true,
 	-- fd --type f --strip-cwd-prefix -I -e .h -e .cpp -e .cu -e .txt -e .cmake -e .comp -e .glsl -e .vert -e .frag -e .geom -e .prj -e .rg --exclude lib --exclude build
 	find_command = {
@@ -69,36 +68,21 @@ function M.project_view()
 	},
 
 	attach_mappings = function(_, map)
-	    -- Adds a new map to ctrl+e
-	    map("i", "<C-v>", function(_)
-		local entry = require("telescope.actions.state").get_selected_entry()
-
-		vim.cmd(":wincmd v")
-		vim.cmd(":e " .. entry.value)
-	    end)
 	    map("i", "<C-h>", function(_)
 		local entry = require("telescope.actions.state").get_selected_entry()
-
-		vim.cmd(":wincmd h")
+		pane.ensure_left_split()
 		vim.cmd(":e " .. entry.value)
 	    end)
 	    map("i", "<C-l>", function(_)
 		local entry = require("telescope.actions.state").get_selected_entry()
-
-		vim.cmd(":wincmd l")
+		pane.ensure_right_split()
 		vim.cmd(":e " .. entry.value)
 	    end)
-
 	    return true
 	end
     }
 
-
     telescope_builtin.find_files(opts)
-end
-
-function M.project_search()
-    telescope_builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end
 
 return M
