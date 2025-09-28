@@ -37,17 +37,7 @@ require("lazy").setup({
     },
 })
 
--- statusline
-vim.o.statusline = table.concat({
-    "%{FugitiveStatusline()}",
-    " %f%m",
-    "%=",
-    "%{gutentags#statusline()}",
-    " %l/%L",
-    " %y",
-    " %{ObsessionStatus()}",
-})
-
+require("config.statusline")
 require("config.coloring")
 require("config.autocmds")
 require("config.options")
