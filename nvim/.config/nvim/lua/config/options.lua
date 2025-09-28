@@ -1,5 +1,8 @@
 -- config/options.lua
 
+-- behavior for :stag command
+vim.opt.switchbuf = { "useopen", "usetab", "vsplit" }
+
 -- disable annoying ring bell on "error"
 vim.opt.errorbells = false
 
