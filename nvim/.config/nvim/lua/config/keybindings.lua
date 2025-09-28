@@ -2,6 +2,13 @@
 
 local map = require("utils.keymap")
 local lang_sel = require("utils.lang_selection")
+local tf = require("utils.smart_tagfunc")
+
+-- my own smart tag func
+map.n("<C-]>", tf.call, {
+    silent = true,
+    desc = "",
+})
 
 map.i("jk", "<ESC>")
 map.n("<leader>n", ":nohlsearch<CR>", {silent=true})
@@ -17,7 +24,7 @@ map.n("<F2>", ":Mason<CR>", {silent=true,noremap=false})
 --map.n("gp", ":bp<CR>")
 
 -- cmake building
-map.n("<C-t>", ":CMake select_target<CR>")
+--map.n("<C-t>", ":CMake select_target<CR>")
 map.n("<C-d>", ":CMake select_build_type<CR>")
 map.n("<C-c>", ":CMake configure<CR>")
 map.n("<C-b>", require("utils.sensitive_funcs").build_all)

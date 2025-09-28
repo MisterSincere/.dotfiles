@@ -18,15 +18,16 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- TODO: Don't know where these came from
 -- allow rg to detect root of git
 local executable = vim.fn['executable']
 if executable('rg') then
     vim.g.rg_derive_root = 'true'
 end
-
 -- thing to ignore in search
 vim.g.ctrlp_user_command = {'.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'}
 vim.g.ctrlp_use_caching = 0
+
 
 require("lazy").setup({
     spec = {
@@ -42,4 +43,4 @@ require("config.coloring")
 require("config.autocmds")
 require("config.options")
 require("config.keybindings")
-require('config.lsp')
+require("config.lsp")
