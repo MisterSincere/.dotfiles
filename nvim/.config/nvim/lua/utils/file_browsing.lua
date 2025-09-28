@@ -78,6 +78,11 @@ function M.project_view()
 		pane.ensure_right_split()
 		vim.cmd(":e " .. entry.value)
 	    end)
+	    map("i", "<C-t>", function(_)
+		local entry = require("telescope.actions.state").get_selected_entry()
+		vim.cmd(":tabnew")
+		vim.cmd(":e " .. entry.value)
+	    end)
 	    return true
 	end
     }
