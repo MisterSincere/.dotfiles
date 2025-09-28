@@ -82,6 +82,7 @@ function M.project_view()
 		local entry = require("telescope.actions.state").get_selected_entry()
 		vim.cmd(":tabnew")
 		vim.cmd(":e " .. entry.value)
+		vim.cmd("stopinsert")
 	    end)
 	    return true
 	end
