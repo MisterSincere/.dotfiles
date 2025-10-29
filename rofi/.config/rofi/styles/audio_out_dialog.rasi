@@ -3,3 +3,7 @@
 entry {
   placeholder:    "Select audio output...";
 }
+
+listview {
+  lines: 6;
+}

@@ -2,7 +2,16 @@
 
 dir="$HOME/.config/rofi/styles"
 
-options=$(pamixer --list-sinks | awk -F " \"" '{ if (NR!=1) { print substr($4, 1, length($4)-1) } }' | grep -iv hdmi)
-
-selection=$(echo -e $options | rofi -dmenu -i -theme "$dir/audio_in_dialog.rasi")
-coproc ( pamixer sink $selection )
+options=$(wpctl status | awk '/Sinks:/{flag=1;next}/Sources:/{flag=0}flag')
+# remove symbols | and * and [vol *] bracket
+options=$(echo "${options}" | sed -E 's/│|\*|\[.*\]//g')
+# remove white spaces
+options=$(echo "${options}" | sed -E 's/^[[:space:]]*//g')
+options=$(echo "${options}" | sed -E 's/[[:space:]]*$//g')
+# remove hdmi/display options
+options=$(echo "${options}" | grep -iv 'hdmi')
+ids=($(echo "${options}" | awk '{ print $1 }' | sed 's/\.//g'))
+sinks=$(echo "${options}" | sed -E 's/^[0-9]+\.[[:space:]]//g')
+sinks=$(echo "${sinks}" | tr '\n' '|')
+selection=$(echo -e "${sinks}" | rofi -format 'i' -sep '|' -dmenu -i -theme "$dir/audio_in_dialog.rasi")
+coproc ( wpctl set-default ${ids[${selection}]} )
