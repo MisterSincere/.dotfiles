@@ -13,5 +13,8 @@ options=$(echo "${options}" | grep -iv 'hdmi')
 ids=($(echo "${options}" | awk '{ print $1 }' | sed 's/\.//g'))
 sinks=$(echo "${options}" | sed -E 's/^[0-9]+\.[[:space:]]//g')
 sinks=$(echo "${sinks}" | tr '\n' '|')
-selection=$(echo -e "${sinks}" | rofi -format 'i' -sep '|' -dmenu -i -theme "$dir/audio_in_dialog.rasi")
+if [[ "${sinks: -1}" == "|" ]]; then
+    sinks=${sinks%?}
+fi
+selection=$(echo -e "${sinks}" | rofi -format 'i' -sep '|' -dmenu -i -theme "$dir/audio_out_dialog.rasi")
 coproc ( wpctl set-default ${ids[${selection}]} )
