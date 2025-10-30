@@ -22,7 +22,7 @@ fi
 rofi_list=""
 match_ids=()
 while read -r entry; do
-	match_ids+=($(echo "$entry" | jq -r '.key'))
+    match_ids+=($(echo "$entry" | jq -r '.key'))
 
     status=$(echo "$entry" | jq -r '.value.status')
     time=$(echo "$entry" | jq -r '.value.time')
@@ -31,8 +31,8 @@ while read -r entry; do
     team2_name=$(echo "$entry" | jq -r '.value.competitors[1].shortName')
     team2_score=$(echo "$entry" | jq -r '.value.competitors[1].score')
 
-	entry_name="${status_texts["${status}"]}\t${time}\t${team1_score} : ${team2_score}\t${team1_name} - ${team2_name}"
-	rofi_list+="|${entry_name}"
+    entry_name="${status_texts["${status}"]}\t${time}\t${team1_score} : ${team2_score}\t${team1_name} - ${team2_name}"
+    rofi_list+="|${entry_name}"
 done < <(jq -c 'to_entries[]' "$data_file")
 
 rofi_list="${rofi_list#'|'}"
@@ -40,7 +40,7 @@ rofi_list="${rofi_list#'|'}"
 sel="$(echo -e ${rofi_list} | rofi -sep '|' -format 'i' -dmenu -markup-rows -theme "${rdir}/styles/select_match.rasi")"
 
 if [[ "${sel}" != "-1" && -n "${sel}" ]]; then
-	echo ${match_ids[${sel}]} > $match_file
+    echo ${match_ids[${sel}]} > $match_file
 else
-	echo "" > $match_file
+    echo "" > $match_file
 fi
