@@ -52,6 +52,7 @@ listview {
     cycle: true;
     dynamic: true;
     layout: vertical;
+    background-color: none;
 }
 
 mainbox {
@@ -59,18 +60,22 @@ mainbox {
     background-color: #00000000;
 }
 
-element-text, element-icon {
-    background-color: inherit;
-    text-color: inherit;
+element {
+    children: [element-text];
+    background-color: #000000e0;
     padding: 8px 0px 8px 15px;
+}
+element-text {
+    text-color: inherit;
 }
 
 element normal,
 element alternate {
-    background-color: #000000bb;
+    background-color: none;
     text-color: #fff;
 }
 element selected {
     background-color: #145f96;
-    text-color: #fff;
+    text-color: #000;
+    style: bold;
 }

@@ -16,7 +16,7 @@ mkdir -p ${sdir}
 [ ! -f "${match_file}" ] && touch $match_file
 
 if test `find "${data_file}" -mmin +1`; then
-	"${refresh_data_script}" force-refresh
+    "${refresh_data_script}" force-refresh
 fi
 
 rofi_list=""

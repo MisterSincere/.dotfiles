@@ -1,10 +1,48 @@
 #!/bin/bash
-
 dir="$HOME/.config/rofi/styles"
 
-options=$(pamixer --list-sources | awk -F " \"" '{ if (NR!=1) { print substr($4, 1, length($4)-1) } }')
+function join_by {
+    local d=${1-} f=${2-}
+    if shift 2; then
+	printf %s "$f" "${@/#/$d}"
+    fi
+}
 
-selection=$(echo -e "$options" | rofi -u 1 -dmenu -i -theme "$dir/audio_in_dialog.rasi")
+function get_cur_index() {
+    local cur_id=$(echo "${1}" | sed -n 's/.*\*[[:space:]]*\([0-9]\+\).*/\1/p')
+    
+    for i in  "${!ids[@]}"; do
+	if [[ "${ids[$i]}" = "${cur_id}" ]]; then
+	    echo "$i"
+	    break
+	fi
+    done
+}
 
-selected_sink=$(pamixer --list-sources | grep "$selection" | awk '{ print $1 }')
-coproc ( pamixer --sink $selected_sink )
+
+wp_status_audio=$(wpctl status | awk 'BEGIN{RS="\nVideo\n"; FS="\nAudio\n"}NF>1{print $NF}')
+wp_sources=$(echo "${wp_status_audio}" | awk 'BEGIN{RS="├─ Filters:\n"; FS="├─ Sources:\n"}NF>1{print $NF}')
+
+# remove symbols | and * and [vol *] bracket
+options=$(echo "${wp_sources}" | sed -E 's/│|\*|\[.*\]//g')
+# remove white spaces
+options=$(echo "${options}" | sed -E 's/^[[:space:]]*//g')
+options=$(echo "${options}" | sed -E 's/[[:space:]]*$//g')
+# remove hdmi/display options as audio out
+options=$(echo "${options}" | grep -iv 'hdmi')
+# make id array
+ids=($(echo "${options}" | awk '{ print $1 }' | sed 's/\.//g'))
+# make sources array
+options=$(echo "${options}" | sed -E 's/^[0-9]+\.[[:space:]]//g')
+readarray -t sources <<<"${options}"
+
+
+sel_index=$(get_cur_index "${wp_sources}")
+sources[${sel_index}]="> ${sources[${sel_index}]}"
+
+sources_encoded=$(join_by '|' "${sources[@]}")
+sel=$(echo -e "${sources_encoded}" | rofi -format 'i' -sep '|' -dmenu -i -theme "$dir/audio_in_dialog.rasi")
+
+if [[ "${sel}" != "-1" && -n "${sel}" ]]; then
+    coproc ( wpctl set-default ${ids[${sel}]} )
+fi
