@@ -71,12 +71,16 @@ vim.lsp.config("vue_ls", {
 })
 
 vim.lsp.config("pylsp", {
-    plugins = {
-	pycodestyle = {
-	    -- E265: block comment should start with '# '
-	    -- E231: missing whitespace after ','
-	    -- E501: line too long
-	    ignore = {'E265', 'E231', 'E501'},
+    settings = {
+	pylsp = {
+	    plugins = {
+		pycodestyle = {
+		    -- E265: block comment should start with '# '
+		    -- E231: missing whitespace after ','
+		    -- E501: line too long
+		    ignore = {'E265', 'E231', 'E501'},
+		}
+	    }
 	}
     }
 })
