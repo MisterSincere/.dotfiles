@@ -33,5 +33,4 @@ export QT_QPA_PLATFORM=wayland
 #export STEAM_FORCE_DESKTOPUI_SCALING=2
 export GTK2_RC_FILES=usr/share/themes/Breeze-Dark/gtk-2.0/gtkrc
 export GTK_THEME=Breeze:dark
-export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_SCREEN_SCALE_FACTORS="1;1"
