@@ -42,6 +42,10 @@ map.n("<F8>", require("utils.sensitive_funcs").continue)
 map.n("<F10>", require("utils.sensitive_funcs").show_dbg_value, {silent=false})
 map.n("<F11>", require("utils.sensitive_funcs").close_dbg_value, {silent=false})
 
+-- neogen
+map.n("<leader>df", ":lua require('neogen').generate({ type='func' })<CR>");
+map.n("<leader>dc", ":lua require('neogen').generate({ type='class' })<CR>");
+
 
 -- formatting shortcut
 map.v("<leader>f",

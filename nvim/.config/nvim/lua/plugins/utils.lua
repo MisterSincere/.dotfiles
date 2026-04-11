@@ -53,6 +53,10 @@ return {
 	    { "<leader>e", ":NvimTreeToggle<CR>", silent = true }
 	}
     },
+    {
+	"danymat/neogen",
+	config = true,
+    },
 
     -- nvim session recovery
     { "tpope/vim-obsession" },

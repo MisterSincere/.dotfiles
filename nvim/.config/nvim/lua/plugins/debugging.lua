@@ -7,7 +7,7 @@ return {
 	    dap.set_log_level("DEBUG")
 	    dap.adapters.lldb = {
 		type = "executable",
-		command = "/usr/bin/lldb-vscode",
+		command = "/usr/bin/codelldb",
 		name = "lldb",
 	    }
 	    dap.configurations.cpp = {
