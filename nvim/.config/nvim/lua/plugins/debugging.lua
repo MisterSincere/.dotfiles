@@ -1,29 +1,29 @@
 return {
     -- debugging
-    { 
+    {
 	"mfussenegger/nvim-dap",
 	config = function(lazy, props)
 	    local dap = require("dap")
 	    dap.set_log_level("DEBUG")
 	    dap.adapters.lldb = {
 		type = "executable",
-		command = "/usr/bin/codelldb",
+		command = "/usr/bin/lldb-dap",
 		name = "lldb",
 	    }
-	    dap.configurations.cpp = {
-		{
-		    name = "Launch",
-		    type = "lldb",
-		    request = "launch",
-		    program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-		    end,
-		    cwd = "${workspaceFolder}",
-		    stopOnEntry = false,
-		    args = {},
-		    runInTerminal = false,
-		}
-	    }
+	    --dap.configurations.cpp = {
+	    --    {
+	    --        name = "Launch",
+	    --        type = "lldb",
+	    --        request = "launch",
+	    --        program = function()
+	    --    	return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+	    --        end,
+	    --        cwd = "${workspaceFolder}",
+	    --        stopOnEntry = false,
+	    --        args = {},
+	    --        runInTerminal = false,
+	    --    }
+	    --}
 	    dap.configurations.c = dap.configurations.cpp
 	    vim.fn.sign_define('DapBreakpoint', {
 		text = " B", texthl = "", linehl = "", numhl = ""

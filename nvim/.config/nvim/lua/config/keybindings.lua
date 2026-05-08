@@ -25,10 +25,10 @@ map.n("<F2>", ":Mason<CR>", {silent=true,noremap=false})
 
 -- cmake building
 --map.n("<C-t>", ":CMake select_target<CR>")
-map.n("<C-d>", ":CMake select_build_type<CR>")
-map.n("<C-c>", ":CMake configure<CR>")
-map.n("<C-b>", require("utils.sensitive_funcs").build_all)
---map.n("<C-Shift-b>", require("utils.sensitive_funcs").build)
+map.n("<C-d>", ":CMakeSelectBuildType<CR>")
+map.n("<C-c>", ":CMakeGenerate<CR>")
+map.n("<C-Shift-b>", require("utils.sensitive_funcs").build_all)
+map.n("<C-b>", require("utils.sensitive_funcs").build)
 map.n("<C-a>", require("utils.sensitive_funcs").set_run_args)
 map.n("<leader><F5>", require("utils.sensitive_funcs").run_debug, {silent=false})
 map.n("<F5>", require("utils.sensitive_funcs").run)
@@ -50,11 +50,11 @@ map.n("<leader>dc", ":lua require('neogen').generate({ type='class' })<CR>");
 -- formatting shortcut
 map.v("<leader>f",
 function ()
-	if (lang_sel.is_c()) then
-		vim.cmd("ClangFormat")
-	elseif (lang_sel.is_rust()) then
-		vim.cmd("RustFmt")
-	end
+    if (lang_sel.is_c()) then
+	vim.cmd("ClangFormat")
+    elseif (lang_sel.is_rust()) then
+	vim.cmd("RustFmt")
+    end
 end
 ,
 { silent = true }
