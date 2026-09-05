@@ -217,11 +217,35 @@ vim.lsp.config("tinymist", {
     end
 })
 
+--vim.lsp.config("rust_analyzer", {
+--    settings ={
+--	["rust-analyzer"] = {
+--	    diagnostics = {
+--		enable = false,
+--	    },
+--	},
+--    },
+--})
+-- since using rustaceanvim
+vim.g.rustaceanvim = {
+    tools = {},
+    dap = {},
+    server = {
+	default_settings = {
+	    ["rust-analyzer"] = {
+		diagnostics = {
+		    enable = false,
+		},
+	    },
+	},
+    },
+}
+
 vim.lsp.config("html", {
     filetypes = { "twig", "html", "templ", "jinja" }
 })
 
-vim.lsp.enable({ "clangd", "rust_analyzer", "ts_ls", "vue_ls", "phpactor", "html", "pylsp", "tinymist", "lua_ls", "twiggy_language_server", "stylelint" })
+vim.lsp.enable({ "clangd", "ts_ls", "vue_ls", "phpactor", "html", "pylsp", "tinymist", "lua_ls", "twiggy_language_server", "stylelint" })
 
 vim.diagnostic.config({
     virtual_text = false,

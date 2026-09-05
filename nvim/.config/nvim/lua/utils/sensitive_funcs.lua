@@ -115,4 +115,10 @@ function M.set_run_args()
     end
 end
 
+function M.set_launch_target()
+    if (lang_sel.is_c()) then
+    	vim.cmd('CMakeSelectLaunchTarget')
+    end
+end
+
 return M

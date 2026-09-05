@@ -29,39 +29,44 @@ return {
 	},
     },
     {
-	"hrsh7th/nvim-cmp",
-	build = "make install_jsregexp",
-	version = "v2.*",
-	config = function()
-	    local cmp = require("cmp")
-	    cmp.setup({
-		snippet = {
-		    expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		    end
-		},
-		window = {
-		    completion = cmp.config.window.bordered(),
-		},
-		mapping = cmp.mapping.preset.insert(
-		    {
-			["<C-Space>"] = cmp.mapping.complete(),
-			["<C-e>"] = cmp.mapping.abort(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
-		    }
-		),
-		sources = cmp.config.sources(
-		    {
-			{ name = "nvim_lsp" },
-			--{ name = "lazydev", group_index = 0 },
-		    }, {
-			{ name = "buffer" },
-		    }
-		),
-	    })
-	end,
-	dependencies = {
-	    "L3MON4D3/LuaSnip"
-	}
+        "hrsh7th/nvim-cmp",
+        build = "make install_jsregexp",
+        version = "v2.*",
+        config = function()
+            local cmp = require("cmp")
+            cmp.setup({
+        	snippet = {
+        	    expand = function(args)
+        		require("luasnip").lsp_expand(args.body)
+        	    end
+        	},
+        	window = {
+        	    completion = cmp.config.window.bordered(),
+        	},
+        	mapping = cmp.mapping.preset.insert(
+        	    {
+        		["<C-Space>"] = cmp.mapping.complete(),
+        		["<C-e>"] = cmp.mapping.abort(),
+        		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        	    }
+        	),
+        	sources = cmp.config.sources(
+        	    {
+        		{ name = "nvim_lsp" },
+        		--{ name = "lazydev", group_index = 0 },
+        	    }, {
+        		{ name = "buffer" },
+        	    }
+        	),
+            })
+        end,
+        dependencies = {
+            "L3MON4D3/LuaSnip"
+        }
+    },
+    {
+	"mrcjkb/rustaceanvim",
+	version = "^9",
+	lazy = false,
     },
 }
