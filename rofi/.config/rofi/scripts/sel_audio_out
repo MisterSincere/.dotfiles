@@ -1,46 +1,72 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 dir="$HOME/.config/rofi/styles"
 
-function join_by {
-    local d=${1-} f=${2-}
-    if shift 2; then
-	printf %s "$f" "${@/#/$d}"
+declare -a ids
+declare -a sinks
+
+current_id=$(
+    wpctl inspect @DEFAULT_AUDIO_SINK@ 2>/dev/null |
+	awk '
+	    NR == 1 {
+		sub(/^id /, "")
+		sub(/,.*/, "")
+		print
+	    }
+	'
+)
+
+
+while IFS=$'\t' read -r id description; do
+    [[ -n "$id" && -n "$description" ]] || continue
+
+    ids+=("$id")
+
+    if [[ "$id" == "$current_id" ]]; then
+	sinks+=("> $description")
+    else
+	sinks+=("$description")
     fi
-}
+done < <(
+    pw-dump | jq -r '
+	.[]
+	| select(.type == "PipeWire:Interface:Node")
+	| select(.info.props["media.class"] == "Audio/Sink")
+	| select(
+	    (
+		(
+		    (.info.props["node.description"] // "")
+		    + " "
+		    + (.info.props["node.name"] // "")
+		)
+		| ascii_downcase
+		| contains("hdmi")
+	    )
+	    | not
+	)
+	| [
+	    .id,
+	    (
+		.info.props["node.description"]
+		// .info.props["node.nick"]
+		// .info.props["node.name"]
+		// ("Sink " + (.id | tostring))
+	    )
+	]
+	| @tsv
+    '
+)
 
-function get_cur_index() {
-    local cur_id=$(echo "${1}" | sed -n 's/.*\*[[:space:]]*\([0-9]\+\).*/\1/p')
-    
-    for i in  "${!ids[@]}"; do
-	if [[ "${ids[$i]}" = "${cur_id}" ]]; then
-	    echo "$i"
-	    break
-	fi
-    done
-}
+if ((${#sinks[@]} == 0)); then
+    rofi -e "No audio output devices found."
+    exit 1
+fi
 
-wp_status_audio=$(wpctl status | awk 'BEGIN{RS="\nVideo\n"; FS="\nAudio\n"}NF>1{print $NF}')
-wp_sinks=$(echo "${wp_status_audio}" | awk 'BEGIN{RS="├─ Sources:\n"; FS="├─ Sinks:\n"}NF>1{print $NF}')
+selection=$(
+    printf '%s\n' "${sinks[@]}" |
+	rofi -format 'i' -dmenu -i -theme "$dir/audio_out_dialog.rasi"
+)
 
-# remove symbols | and * and [vol *] bracket
-options=$(echo "${wp_sinks}" | sed -E 's/│|\*|\[.*\]//g')
-# remove white spaces
-options=$(echo "${options}" | sed -E 's/^[[:space:]]*//g')
-options=$(echo "${options}" | sed -E 's/[[:space:]]*$//g')
-# remove hdmi/display options as audio out
-options=$(echo "${options}" | grep -iv 'hdmi')
-# make id array
-ids=($(echo "${options}" | awk '{ print $1 }' | sed 's/\.//g'))
-# make sinks array 
-options=$(echo "${options}" | sed -E 's/^[0-9]+\.[[:space:]]//g')
-readarray -t sinks <<<"${options}"
-
-sel_index=$(get_cur_index "${wp_sinks}")
-sinks[${sel_index}]="> ${sinks[${sel_index}]}"
-
-sinks_encoded=$(join_by '|' "${sinks[@]}")
-sel=$(echo -e "${sinks_encoded}" | rofi -format 'i' -sep '|' -dmenu -i -theme "$dir/audio_out_dialog.rasi")
-
-if [[ "${sel}" != "-1" && -n "${sel}" ]]; then
-    coproc ( wpctl set-default ${ids[${sel}]} )
+if [[ "$selection" =~ ^[0-9]+$ ]] && ((selection < ${#ids[@]})); then
+    wpctl set-default "${ids[$selection]}"
 fi
