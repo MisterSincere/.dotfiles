@@ -19,13 +19,13 @@ return {
 	end,
 	keys = {
 	    {
-		"<leader>ha",
+		"<leader>aa",
 		function()
 		    require("harpoon"):list():add()
 		end
 	    },
 	    {
-		"<leader>hh",
+		"<leader>ah",
 		function ()
 		    require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
 		end
@@ -63,7 +63,7 @@ return {
 
     -- formatting
     { "rhysd/vim-clang-format" },
-    { "rust-lang/rust.vim" },
+    { "MisterSincere/rust.vim" },
     { "tell-k/vim-autopep8" },
 
     -- syntax highlighting
@@ -80,7 +80,27 @@ return {
 	keys = {
 	    { "<C-u>", vim.cmd.UndotreeToggle }
 	}
-    }
+    },
+
+    -- markdown
+    {
+	"MeanderingProgrammer/render-markdown.nvim",
+	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
+	---@module 'render-markdown'
+	---@type render.md.UserConfig
+    },
+
+    {
+	"ron-rs/ron.vim",
+    },
+
+    {
+	"nvim-mini/mini.pairs",
+	version = false,
+	config = function()
+	    require("mini.pairs").setup()
+	end,
+    },
 }
 
 --Plug('folke/lazydev.nvim')

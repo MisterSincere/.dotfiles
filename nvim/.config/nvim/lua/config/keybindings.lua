@@ -11,6 +11,10 @@ map.n("<C-]>", tf.call, {
 })
 
 map.i("jk", "<ESC>")
+map.n("<leader>h", ":wincmd h<CR>", {silent=true})
+map.n("<leader>l", ":wincmd l<CR>", {silent=true})
+map.n("<leader>j", ":wincmd j<CR>", {silent=true})
+map.n("<leader>k", ":wincmd k<CR>", {silent=true})
 map.n("<leader>n", ":nohlsearch<CR>", {silent=true})
 map.n("<leader>r", ":redo<CR>")
 map.n("<leader>cs", ":setlocal spell spelllang=en_us<CR>")
@@ -30,6 +34,7 @@ map.n("<C-c>", ":CMakeGenerate<CR>")
 map.n("<C-Shift-b>", require("utils.sensitive_funcs").build_all)
 map.n("<C-b>", require("utils.sensitive_funcs").build)
 map.n("<C-a>", require("utils.sensitive_funcs").set_run_args)
+map.n("<C-t>", require("utils.sensitive_funcs").set_launch_target)
 map.n("<leader><F5>", require("utils.sensitive_funcs").run_debug, {silent=false})
 map.n("<F5>", require("utils.sensitive_funcs").run)
 
