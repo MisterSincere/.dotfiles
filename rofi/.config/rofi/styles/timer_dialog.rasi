@@ -1,9 +1,18 @@
 @import "dialog.rasi"
 
 entry {
-  placeholder:    "Enter time...";
+    placeholder: "Enter time...";
 }
 
 window {
-  height: 70px;
+    height: 70px;
+}
+
+inputbar {
+    border: 3px;
+    border-color: #890131;
+}
+
+mainbox {
+    children: [inputbar];
 }
