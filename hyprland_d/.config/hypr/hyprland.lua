@@ -18,7 +18,8 @@ hl.monitor({
 ------------------
 ---- PROGRAMS ----
 ------------------
-local terminal = "kitty -e tmux new-session -A -s playground"
+--local terminal = "kitty -e tmux new-session -A -s playground"
+local terminal = "sudo /usr/local/sbin/kitty-vpn"
 local file_manager = "dolphin"
 local menu = "$HOME/.config/rofi/scripts/start_launcher.sh"
 local sel_audio_out = "$HOME/.config/rofi/scripts/sel_audio_out"
@@ -198,7 +199,7 @@ hl.bind(main_mod .. " + E", hl.dsp.exec_cmd(file_manager))
 hl.bind(main_mod .. " + F", hl.dsp.window.fullscreen())
 --hl.bind(main_mod .. " + G", "togglegroup")
 hl.bind(main_mod .. " + P", hl.dsp.window.pseudo())
-hl.bind(main_mod .. " + Q", hl.dsp.window.kill())
+hl.bind(main_mod .. " + Q", hl.dsp.window.close())
 hl.bind(main_mod .. " + R", hl.dsp.exec_cmd(waybar_reload))
 hl.bind(main_mod .. " + T", hl.dsp.exec_cmd(timer))
 hl.bind(main_mod .. " + B", hl.dsp.exec_cmd(select_match))
@@ -252,7 +253,7 @@ hl.define_submap("launch", function()
 	hl.dispatch(hl.dsp.submap("reset"))
     end)
     hl.bind("F", function()
-	hl.dispatch(hl.dsp.exec_cmd("firefox"))
+	hl.dispatch(hl.dsp.exec_cmd("sudo /usr/local/sbin/firefox-vpn"))
 	hl.dispatch(hl.dsp.submap("reset"))
     end)
     hl.bind("S", function()
