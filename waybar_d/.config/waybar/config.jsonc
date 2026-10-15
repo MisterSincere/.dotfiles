@@ -16,7 +16,7 @@
 	"modules-center": [
 		"custom/std-end-left",
 		"custom/mono-spacer", 
-		"hyprland/workspaces",
+		"ext/workspaces",
 		"hyprland/submap",
 		"custom/mono-spacer", 
 		"custom/std-end-right",
@@ -87,11 +87,12 @@
 			"custom/gpu-temp",
 		],
 	},
-	"hyprland/workspaces": {
+	"ext/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": false,
 		"warp-on-scroll": false,
 		"format": " {name}: {icon} ",
+		"on-click": "activate",
 		"format-icons": {
 			"1": "",
 			"2": "󰈹",
@@ -104,10 +105,6 @@
 			"focused": "",
 			"default": ""
 		}
-	},
-	"hyprland/window": {
-		"max-length": 86,
-		"icon": false
 	},
 	"keyboard-state": {
 		"numlock": true,
