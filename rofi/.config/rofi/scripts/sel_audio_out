@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+dir="$HOME/.config/rofi/styles"
+
+declare -a ids
+declare -a sinks
+
+current_id=$(
+    wpctl inspect @DEFAULT_AUDIO_SINK@ 2>/dev/null |
+	awk '
+	    NR == 1 {
+		sub(/^id /, "")
+		sub(/,.*/, "")
+		print
+	    }
+	'
+)
+
+
+while IFS=$'\t' read -r id description; do
+    [[ -n "$id" && -n "$description" ]] || continue
+
+    ids+=("$id")
+
+    if [[ "$id" == "$current_id" ]]; then
+	sinks+=("> $description")
+    else
+	sinks+=("$description")
+    fi
+done < <(
+    pw-dump | jq -r '
+	.[]
+	| select(.type == "PipeWire:Interface:Node")
+	| select(.info.props["media.class"] == "Audio/Sink")
+	| select(
+	    (
+		(
+		    (.info.props["node.description"] // "")
+		    + " "
+		    + (.info.props["node.name"] // "")
+		)
+		| ascii_downcase
+		| contains("hdmi")
+	    )
+	    | not
+	)
+	| [
+	    .id,
+	    (
+		.info.props["node.description"]
+		// .info.props["node.nick"]
+		// .info.props["node.name"]
+		// ("Sink " + (.id | tostring))
+	    )
+	]
+	| @tsv
+    '
+)
+
+if ((${#sinks[@]} == 0)); then
+    rofi -e "No audio output devices found."
+    exit 1
+fi
+
+selection=$(
+    printf '%s\n' "${sinks[@]}" |
+	rofi -format 'i' -dmenu -i -theme "$dir/audio_out_dialog.rasi"
+)
+
+if [[ "$selection" =~ ^[0-9]+$ ]] && ((selection < ${#ids[@]})); then
+    wpctl set-default "${ids[$selection]}"
+fi
