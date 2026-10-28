@@ -27,6 +27,12 @@ map.n("<F2>", ":Mason<CR>", {silent=true,noremap=false})
 --map.n("gn", ":bn<CR>")
 --map.n("gp", ":bp<CR>")
 
+-- neotest
+map.n("<leader>tr", require("neotest").run.run)
+map.n("<leader>tR", function () require("neotest").run.run(vim.fn.expand("%")) end)
+map.n("<leader>ts", require("neotest").summary.open)
+map.n("<leader>to", function () require("neotest").output_panel.open() end)
+
 -- cmake building
 --map.n("<C-t>", ":CMake select_target<CR>")
 map.n("<C-d>", ":CMakeSelectBuildType<CR>")
