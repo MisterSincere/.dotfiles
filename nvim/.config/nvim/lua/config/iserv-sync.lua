@@ -15,7 +15,7 @@ local function sync_project(file)
     project_dir = vim.fs.normalize(project_dir)
 
     -- only sync direct projects directly inside ~/iserv
-    if vim.fs.normalize(vim.fn.fnamemodify(project_dir, ":h")) != iserv_dir then
+    if vim.fs.normalize(vim.fn.fnamemodify(project_dir, ":h")) ~= iserv_dir then
 	return
     end
 
